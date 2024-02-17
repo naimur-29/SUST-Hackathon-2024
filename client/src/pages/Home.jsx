@@ -16,6 +16,9 @@ export default function Home() {
       <h1>home page </h1>
       <h1>home page </h1>
       <h1>home page </h1>
+      <h1>Monir </h1>
+      <h1>Monir </h1>
+      <h1>Monir </h1>
     </div>
   );
 }
