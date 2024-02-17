@@ -1,5 +1,5 @@
 Project: 
-    AI-Powered Programming Language Learning Assistant
+    AI-Powered Programming Language Learning Assistant (Code Companion)
 
 Problem We're Solving:
     We, the 'Shatab' team, are trying to solving the learning curve associated with mastering programming languages, specially for those who already have proficiency in one or more. The main idea is that if you already know a language, you can compare and pick the other one very easily! Now, there's a lot of online code converters which just converts the code, but that doesn't help you learn.

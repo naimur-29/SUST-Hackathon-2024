@@ -9,19 +9,17 @@ const User = {
   uid: Number,
   name: String,
   university: String,
-  languagePairs: Array[lids],
-  lastThreePairs: Array[lids],
 };
 
 const LanguagePair = {
   lid: String,
   uid: Number,
   name: String,
-  historyId: Number(hid),
 };
 
 const History = {
-  hid: Number,
+  lid: Number,
+  uid: Number,
   content: Array(Histories),
 };
 ```
