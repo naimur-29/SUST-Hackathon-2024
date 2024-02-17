@@ -18,14 +18,14 @@ const navLink = [
   },
   {
     item: "Contact",
-    link: "/",
+    link: "/contact",
   },
 ];
 
 const avatarItems = [
   {
     item: "Dashboard",
-    link: "/dashboard",
+    link: "/dashboard/profile",
   },
 ];
 

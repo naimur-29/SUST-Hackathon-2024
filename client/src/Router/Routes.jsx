@@ -10,6 +10,7 @@ import Dashboard from "../pages/Dashboard/Dashboard";
 import Profile from "../pages/Dashboard/Profile";
 import LearningGrounds from "../pages/Dashboard/LearningGrounds";
 import LearningPlayground from "../pages/LearningPlayground";
+import ContactUs from "../pages/ContactUs";
 
 export const PageRouter = createBrowserRouter([
   {
@@ -27,6 +28,10 @@ export const PageRouter = createBrowserRouter([
       {
         path: "/register",
         element: <Register />,
+      },
+      {
+        path: "/contact",
+        element: <ContactUs />,
       },
       {
         path: "/todo",
