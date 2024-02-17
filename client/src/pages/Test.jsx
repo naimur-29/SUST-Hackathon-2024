@@ -76,7 +76,6 @@ const Test = () => {
           {/* explain container starts  */}
           <div className="explainSection  mt-[2.5rem]  ">
             {/* explaination title starts  */}
-
             <h1 className="  mb-3  font-semibold text-xl ">
               Explaination (out) :
             </h1>
@@ -89,6 +88,14 @@ const Test = () => {
             </p>
           </div>
           {/* explain container ends  */}
+
+          {/* more example button starts  */}
+          <div className="moreExample mt-[1rem]  text-end ">
+            <button className=" py-2 px-4 bg-green-600 text-gray-50 hover:bg-green-700 hover:scale-105 active:scale-100 hover:shadow-md rounded     ">
+              More Example{" "}
+            </button>
+          </div>
+          {/* more example button ends */}
         </div>
         {/* output container ends */}
       </div>
