@@ -11,7 +11,7 @@ export default function Home() {
   // console.log(test);
 
   // console.log(state);
-  console.log(user?.photoURL);
+  // console.log(user?.photoURL);
   return (
     <div className="homePageContainer     ">
       <h1>home page </h1>
