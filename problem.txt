@@ -1,0 +1,28 @@
+Project: 
+    AI-Powered Programming Language Learning Assistant
+
+Problem We're Solving:
+    We, the 'Shatab' team, are trying to solving the learning curve associated with mastering programming languages, specially for those who already have proficiency in one or more. The main idea is that if you already know a language, you can compare and pick the other one very easily! Now, there's a lot of online code converters which just converts the code, but that doesn't help you learn.
+
+Target Audience:
+    Our target audience comprises Computer Science and Engineering (CSE) students in Bangladesh. Through our experience in undertaking a second programming language course, we've observed numerous classmates encountering difficulties in grasping the new language despite their proficiency in another. Further investigations have revealed the prevalence of this issue across the entire country. As an initial approach, we aim to engage with universities throughout Bangladesh and focus on addressing the needs of CSE students.
+
+Product Market Fit (PMF):
+    In Bangladesh, there is a substantial population of Computer Science and Engineering (CSE) students; however, the availability of high-quality resources is limited or most of them are video based and they're time consuming. Therefore, our solution effectively addresses the needs of these students by providing a high-quality learning experience with a totally "new approach(Analogical Learning)" which is proved effective through many researches.
+Total Addressable Market (TAM):
+    Our target market consists of the continually expanding population of Computer Science and Engineering (CSE) students in Bangladesh. This market is expected to persist over time and is projected to grow in tandem with the establishment of new universities. By effectively marketing our product, we have the potential to significantly expand our market share and make a substantial impact both economically and in advancing the technological development of our country.
+    Furthermore, we can explore opportunities for partnerships and collaborations with universities to encourage adoption of our solution among their students. By forging strategic alliances with academic institutions, we can enhance the reach and impact of our product within the target market.
+
+--------------------------------------THEORY------------------------------------------
+1. Analogical Learning:
+    The method of learning by comparing with a previous experience is often referred to as "analogical learning" or "analogical reasoning." This approach involves drawing parallels between new information or concepts and existing knowledge or experiences to facilitate understanding and problem-solving.
+
+Analogical learning leverages the similarities between familiar and unfamiliar situations to transfer knowledge and apply strategies learned in one context to another. By recognizing patterns, identifying similarities, and drawing analogies, learners can make connections and infer solutions more effectively.
+
+Research in cognitive psychology and educational science has demonstrated the effectiveness of analogical learning in various contexts. Studies have shown that analogical reasoning enhances problem-solving skills, promotes deep understanding of concepts, and facilitates transfer of knowledge across domains.
+
+For example, research by Dedre Gentner and her colleagues has explored the role of analogical reasoning in promoting conceptual understanding and problem-solving in domains such as mathematics and science. Their studies have highlighted the importance of analogical learning in facilitating transfer of knowledge and promoting flexible thinking.
+
+Additionally, studies in educational psychology have investigated the use of analogical reasoning strategies in instructional design and learning interventions. These studies have demonstrated that incorporating analogical learning activities into educational materials can enhance learning outcomes and improve students' ability to transfer knowledge to new situations.
+
+Overall, while there is empirical evidence supporting the effectiveness of analogical learning, it's essential to consider factors such as the complexity of the task, learners' prior knowledge, and the quality of the analogies used in the learning process. Additionally, individual differences among learners may influence the extent to which analogical learning strategies are effective in different contexts.
