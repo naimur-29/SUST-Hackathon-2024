@@ -18,11 +18,6 @@ const Profile = () => {
     setPhotoUrl(user?.photoURL);
   }, [user]);
 
-  //   console.log(photoUrl);
-  // console.log(user?.photoURL);
-
-  // console.log(photoUrl);
-
   return (
     <div className="MyProfileContainer h-screen flex justify-center  ">
       <div className="myProfileWrapper  w-[95%] xsm:w-[90%] sm:w-[85%] md:w-[95%] lg:w-[85%] m-auto  bg-gray-200 rounded shadow-md  ">
@@ -57,44 +52,6 @@ const Profile = () => {
                   <p>{user?.email}</p>
                 </div>
                 {/* user email  */}
-
-                {/* user University  */}
-                <div className="userRole  text-base sm:text-lg lg:text-xl mb-2  ">
-                  <p>University name</p>
-                </div>
-                {/* user University */}
-
-                {/* update image  */}
-                {/* <div className="updateImage  ">
-            
-                  <div className="inputComponent mt-3  w-full mb-1  ">
-                    <label
-                      className="block mb-2 text-base sm:text-lg font-medium text-gray-900 dark:text-white"
-                      for="file_input"
-                    >
-                      Upload profile picture
-                    </label>
-                    <input
-                      onChange={(e) => handleImageChange(e)}
-                      className="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
-                      id="file_input"
-                      type="file"
-                    />
-                  </div>
-               
-                </div> */}
-                {/* update image  */}
-
-                {/* update button  */}
-                {/* <div className="updateBtn">
-                  <button
-                    className=" mt-5 rounded hover:shadow font-semibold bg-gray-600 hover:bg-gray-700 dark:bg-gray-100 active:scale-[.99] py-2 w-full text-white dark:text-gray-900 "
-                    onClick={() => handleUpdate()}
-                  >
-                    Update
-                  </button>
-                </div> */}
-                {/* update button  */}
 
                 {/*  */}
               </div>
