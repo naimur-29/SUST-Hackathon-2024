@@ -6,6 +6,7 @@ import RootPage from "./RootPage";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
 import Test from "../pages/Test";
+import Dashboard from "../pages/Dashboard/Dashboard";
 
 export const PageRouter = createBrowserRouter([
   {
@@ -31,6 +32,16 @@ export const PageRouter = createBrowserRouter([
       {
         path: "/test",
         element: <Test />,
+      },
+    ],
+  },
+  {
+    path: "/dashboard",
+    element: <Dashboard />,
+    children: [
+      {
+        path: "/dashboard/history",
+        element: <p>History</p>,
       },
     ],
   },
