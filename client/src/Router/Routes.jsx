@@ -11,6 +11,7 @@ import Profile from "../pages/Dashboard/Profile";
 import LearningGrounds from "../pages/Dashboard/LearningGrounds";
 import LearningPlayground from "../pages/LearningPlayground";
 import ContactUs from "../pages/ContactUs";
+import History from "../pages/Dashboard/History";
 
 export const PageRouter = createBrowserRouter([
   {
@@ -58,6 +59,15 @@ export const PageRouter = createBrowserRouter([
       {
         path: "/dashboard/playground",
         element: <LearningPlayground />,
+      },
+      {
+        path: "/dashboard/playground/:hid",
+        element: <LearningPlayground />,
+      },
+      {
+        // path: "/dashboard/learningHistory",
+        path: "/dashboard/learningHistory/:lid",
+        element: <History />,
       },
     ],
   },
