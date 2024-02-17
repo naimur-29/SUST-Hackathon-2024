@@ -1,12 +1,26 @@
 import { useState } from "react";
 import axios from "axios";
-import { useQuery } from "react-query";
+import { useQuery, useMutation } from "react-query";
 import UseAuth from "../../Hooks/UseAuth";
 
 import { FaRegSquarePlus } from "react-icons/fa6";
 import { RxCross1 } from "react-icons/rx";
 
 import ListPair from "./ListPair";
+
+// list of languages to choose from:
+const languages = [
+  "C",
+  "C++",
+  "C#",
+  "Java",
+  "JavaScript",
+  "Python",
+  "Elixir",
+  "Rust",
+  "Go",
+  "Kotlin",
+];
 
 const LanguagePair = () => {
   // hooks:
@@ -18,24 +32,50 @@ const LanguagePair = () => {
   const [to, setTo] = useState(null);
 
   // queries:
-  const languagePairsQuery = useQuery("fetchLanguagePairs", async () => {
-    const res = await axios.get(`http://localhost:8000/api/pair/${user?.uid}`);
-    return res.data.data;
-  });
+  const addPairMutation = useMutation((pairInfo) =>
+    axios.post(`http://localhost:8000/api/pair`, pairInfo)
+  );
+
+  const { data: languagePairs, isLoading: languagePairsIsLoading } = useQuery(
+    ["fetchLanguagePairs", user?.uid],
+    async () => {
+      const res = await axios.get(
+        `http://localhost:8000/api/pair/${user?.uid}`
+      );
+      return res.data.data;
+    }
+  );
 
   // states:
   const [subMenuOpen, setSubMenuOpen] = useState(
-    new Array(languagePairsQuery?.data?.length).fill(false)
+    new Array(languagePairs?.data?.length).fill(false)
   );
+
+  // function for showing modal
+  const addIconClick = () => {
+    setPairModal(!pairModal);
+  };
+
+  // function for adding new pair
+  const addPair = () => {
+    // add new pair:
+    addPairMutation.mutate({
+      uid: user?.uid,
+      name: `${from} To ${to}`,
+    });
+
+    setPairModal(!pairModal);
+    window.location.reload();
+  };
 
   return (
     <div className="w-full h-full LanguagePairContainer ">
       <div className="w-full h-full px-12 py-8 LanguagePairWrapper ">
         {/* language pair heading starts  */}
-        <div className="relative flex items-center p-4 text-2xl bg-gray-200  languagepairHeading gap-x-1">
+        <div className="relative flex items-center p-4 text-2xl bg-gray-200 languagepairHeading gap-x-1">
           <h1 className="cursor-pointer ">Language pairs </h1>
           <FaRegSquarePlus
-            className="cursor-pointer "
+            className="translate-y-[2.5px] cursor-pointer ml-2 text-3xl"
             onClick={() => addIconClick()}
           />
 
@@ -48,9 +88,9 @@ const LanguagePair = () => {
             }    selectModal  bg-sky-300 p-2 w-[32rem] rounded  `}
           >
             {/* cross button starts  */}
-            <div className="flex justify-end mb-2 crossBtn ">
+            <div className="flex justify-end mb-2 crossBtn">
               <RxCross1
-                className="text-3xl font-bold text-red-600 cursor-pointer "
+                className="text-3xl font-bold text-red-600 cursor-pointer"
                 onClick={() => addIconClick()}
               />
             </div>
@@ -73,10 +113,13 @@ const LanguagePair = () => {
                   className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded outline-none block w-full p-2.5 "
                 >
                   <option value="">Select language</option>
-                  <option value="c">C</option>
-                  <option value="c++">C++</option>
-                  <option value="java">java</option>
-                  <option value="javaScript">javaScript</option>
+                  {languages
+                    .filter((ele) => ele.toLowerCase() !== to)
+                    .map((ele) => (
+                      <option value={ele.toLowerCase()} key={ele}>
+                        {ele}
+                      </option>
+                    ))}
                 </select>
               </div>
               {/* left input ends  */}
@@ -96,10 +139,13 @@ const LanguagePair = () => {
                   className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded outline-none block w-full p-2.5 "
                 >
                   <option value="">Select language</option>
-                  <option value="c">C</option>
-                  <option value="c++">C++</option>
-                  <option value="java">java</option>
-                  <option value="javaScript">javaScript</option>
+                  {languages
+                    .filter((ele) => ele.toLowerCase() !== from)
+                    .map((ele) => (
+                      <option value={ele.toLowerCase()} key={ele}>
+                        {ele}
+                      </option>
+                    ))}
                 </select>
               </div>
               {/* right input ends */}
@@ -110,7 +156,7 @@ const LanguagePair = () => {
             {/* create button starts  */}
             <div className="mt-3 text-center createBtn ">
               <button
-                className="px-4 py-2 text-base bg-green-600 rounded  hover:bg-green-700 text-gray-50 active:scale-95"
+                className="px-4 py-2 text-base bg-green-600 rounded hover:bg-green-700 text-gray-50 active:scale-95"
                 onClick={() => addPair()}
               >
                 Create
@@ -127,10 +173,12 @@ const LanguagePair = () => {
         {/* pair data starts  */}
         <div className="px-3 mt-6 pairData ">
           <ul className="list-decimal list-inside cursor-pointer ">
-            {!languagePairsQuery?.data?.length ? (
-              <h3>No pairs created!</h3>
+            {languagePairsIsLoading ? (
+              <h3>No pairs created yet!</h3>
+            ) : !languagePairs?.length ? (
+              <h3>Loading...</h3>
             ) : (
-              languagePairsQuery?.data?.map((pair, ind) => (
+              languagePairs?.map((pair, ind) => (
                 <ListPair
                   pair={pair}
                   key={ind}
