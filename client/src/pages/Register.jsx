@@ -1,6 +1,6 @@
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
-import { ToastContainer } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { registerSuccessfully } from "../Utils/Toasts";
 import { motion } from "framer-motion";
@@ -39,19 +39,33 @@ const Register = () => {
       formData
     );
 
-    const registerResponse = await registerFunction(userEmail, userPassword);
-    // console.log(registerResponse?.user);
-    if (registerResponse?.user) {
-      updateProfile(registerResponse?.user, {
-        displayName: userName,
-        photoURL: imageResponse?.data?.data?.display_url,
-      }).then((response) => {
-        registerSuccessfully();
-        setTimeout(() => {
-          navigate("/login");
-        }, 1200);
+    try {
+      const registerResponse = await registerFunction(userEmail, userPassword);
+      // console.log(registerResponse);
+      // console.log(registerResponse?.user);
+      if (registerResponse?.user) {
+        updateProfile(registerResponse?.user, {
+          displayName: userName,
+          photoURL: imageResponse?.data?.data?.display_url,
+        }).then((response) => {
+          registerSuccessfully();
+          setTimeout(() => {
+            navigate("/");
+          }, 1200);
+        });
+      }
+    } catch (error) {
+      // console.log(error);
 
-        logoutFunction();
+      toast.error(`${error?.code}`, {
+        position: "top-center",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
       });
     }
 
@@ -87,7 +101,7 @@ const Register = () => {
 
               {errors?.userName && (
                 <p className=" pt-1.5 text-red-600 font-semibold ">
-                  {errors.userName.message}
+                  {errors?.userName?.message}
                 </p>
               )}
             </div>
@@ -107,7 +121,7 @@ const Register = () => {
 
               {errors?.file_input && (
                 <p className=" pt-1.5 text-red-600 font-semibold ">
-                  {errors.file_input.message}
+                  {errors?.file_input?.message}
                 </p>
               )}
             </div>
@@ -128,7 +142,7 @@ const Register = () => {
 
               {errors?.email && (
                 <p className=" pt-1.5 text-red-600 font-semibold ">
-                  {errors.email.message}
+                  {errors?.email?.message}
                 </p>
               )}
             </div>
@@ -174,7 +188,7 @@ const Register = () => {
               />
               {errors?.confirmPassword && (
                 <p className=" pt-1.5 text-red-600 font-semibold ">
-                  {errors.confirmPassword.message}
+                  {errors?.confirmPassword?.message}
                 </p>
               )}
             </div>
