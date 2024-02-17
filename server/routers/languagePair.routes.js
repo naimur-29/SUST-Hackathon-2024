@@ -7,8 +7,8 @@ const router = express.Router();
 
 // POST ROUTES:
 router.post("/", languagePairController.add);
-router.post("/:uid/:lid", languagePairController.getConvertedCode);
-router.post("/:uid/:lid/explain", languagePairController.getExplanationOfCode);
+router.post("/:uid/:_id", languagePairController.getConvertedCode);
+router.post("/:uid/:_id/explain", languagePairController.getExplanationOfCode);
 
 // DELETE ROUTES:
 router.delete("/:uid/:lid", languagePairController.deleteByLid);

@@ -62,17 +62,17 @@ const NavBar = () => {
     >
       <div className="navWrapper flex justify-between w-[98%] xsm:w-[97%] lg:w-[96%] m-auto items-center ">
         {/* nav left  */}
-        <div className="navLeft  ">
-          <div className="navLeftImg  ">
+        <div className="navLeft ">
+          <div className="navLeftImg ">
             <Link
               to={`/`}
-              className="self-center cursor-pointer  font-semibold whitespace-nowrap "
+              className="self-center font-semibold cursor-pointer whitespace-nowrap "
             >
-              <div className=" flex justify-center items-center  ">
+              <div className="flex items-center justify-center ">
                 <div className="logo w-[2.1rem] h-[2.1rem] xsm:w-[2.6rem] xsm:h-[2.5rem] sm:w-[2.8rem] sm:h-[2.7rem]  rounded-md overflow-auto ">
                   <img
                     src="https://i.ibb.co/phpJRMB/rocket-1976107-640.png"
-                    className="  w-full h-full "
+                    className="w-full h-full "
                     alt=""
                   />{" "}
                 </div>
@@ -88,7 +88,7 @@ const NavBar = () => {
         {/* nav left  */}
 
         {/* nav right  */}
-        <div className="navRight  flex justify-between items-center  ">
+        <div className="flex items-center justify-between navRight ">
           <div className="navLinks hidden md:flex  justify-center items-center   mr-1.5 ">
             {navLink.map((ele, ind) => (
               <Link
@@ -128,7 +128,7 @@ const NavBar = () => {
             ) : (
               <Link
                 to={`/login`}
-                className=" hidden md:block bg-gray-600 py-2 px-3 lg:px-4  text-white font-semibold text-xs lg:text-sm "
+                className="hidden px-3 py-2 text-xs font-semibold text-white bg-gray-600 md:block lg:px-4 lg:text-sm"
               >
                 Log in
               </Link>
@@ -141,14 +141,14 @@ const NavBar = () => {
                 id="dropdownAvatar"
                 className="z-10 absolute  top-[6.5rem] -right-[6rem]  md:-right-[5.6rem]  transform -translate-x-1/2 -translate-y-1/2  bg-blue-200 divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600"
               >
-                <div className="px-4 py-3 text-sm text-gray-900 dark:text-white cursor-pointer">
+                <div className="px-4 py-3 text-sm text-gray-900 cursor-pointer dark:text-white">
                   <div> {user?.displayName} </div>
                 </div>
                 <ul
-                  className="py-2 text-sm text-gray-700 dark:text-gray-200   "
+                  className="py-2 text-sm text-gray-700 dark:text-gray-200 "
                   aria-labelledby="dropdownUserAvatarButton"
                 >
-                  <div className="avatarMenuItems  flex flex-col   ">
+                  <div className="flex flex-col avatarMenuItems ">
                     {avatarItems &&
                       avatarItems?.map((avatarMenu, ind) => (
                         <NavLink
@@ -162,7 +162,7 @@ const NavBar = () => {
                       ))}
                   </div>
                   <li
-                    className="block cursor-pointer px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                    className="block px-4 py-2 cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                     onClick={() => handleLogout()}
                   >
                     Sign out
@@ -179,7 +179,7 @@ const NavBar = () => {
 
           {/* toggle button  */}
           <div
-            className="toggleMode  pl-0 md:pl-2 mr-3 md:pr-0 text-xl sm:text-2xl  "
+            className="pl-0 mr-3 text-xl toggleMode md:pl-2 md:pr-0 sm:text-2xl "
             onClick={() => handleDarkMode()}
           >
             {darkmode ? <BsFillMoonFill /> : <BsFillSunFill />}
@@ -189,10 +189,10 @@ const NavBar = () => {
           {/*  */}
           {/* mobile view  */}
 
-          <div className="mobileView flex md:hidden relative ">
+          <div className="relative flex mobileView md:hidden ">
             {/* menu icon  */}
             <div
-              className="menuIcon text-lg xsm:text-xl sm:text-2xl "
+              className="text-lg menuIcon xsm:text-xl sm:text-2xl "
               onClick={() => handleToggle()}
             >
               {/* {!toggle ? <RiMenu3Fill /> : <RiCloseFill />} */}
@@ -204,7 +204,7 @@ const NavBar = () => {
 
             {navToggle && (
               <div className="menuList text-center py-2 bg-[#183D3D] dark:bg-gray-300 absolute transform -translate-x-1/2 -translate-y-1/2 -right-[4.8rem] top-[6.3rem] sm:top-[6.7rem] w-[10rem] ">
-                <div className="menuItem mb-4  ">
+                <div className="mb-4 menuItem ">
                   {navLink.map((ele, ind) => (
                     <div
                       key={ind}
@@ -214,7 +214,7 @@ const NavBar = () => {
                     >
                       <a
                         href={ele.link}
-                        className="  cursor-pointer text-gray-50 dark:text-gray-900 "
+                        className="cursor-pointer text-gray-50 dark:text-gray-900"
                         onClick={() => handleToggle()}
                       >
                         {" "}

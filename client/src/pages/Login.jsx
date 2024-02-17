@@ -10,18 +10,26 @@ import { auth } from "../Utils/Firebase.config";
 import { motion } from "framer-motion";
 import UseAuth from "../Hooks/UseAuth";
 import UseAxiosPublic from "../Hooks/UseAxiosPublic";
+import axios from "axios";
+import { useMutation } from "react-query";
 
 const Login = () => {
   const { user, loading, loginFunction } = UseAuth();
   const axiosPublicUrl = UseAxiosPublic();
   const navigate = useNavigate();
 
+  // hooks:
   const {
     register,
     handleSubmit,
     reset,
     formState: { errors, isSubmitting },
   } = useForm();
+
+  // queries:
+  const addUserMutation = useMutation((userInfo) =>
+    axios.post("http://localhost:8000/api/user", userInfo)
+  );
 
   //   functionality of login
   const handleLogin = (data) => {
@@ -61,8 +69,13 @@ const Login = () => {
     const provider = new GoogleAuthProvider(auth);
 
     signInWithPopup(auth, provider).then((response) => {
-      const userEmail = response?.user?.email;
-      console.log(userEmail);
+      console.log(response?.user?.uid);
+
+      // create user:
+      addUserMutation.mutate({
+        uid: response?.user?.uid,
+        name: response?.user?.email.split("@")[0],
+      });
       loggedInSuccessfully();
       setTimeout(() => {
         navigate(location?.state ? location.state : "/");
@@ -71,10 +84,10 @@ const Login = () => {
   };
 
   return (
-    <div className="loginContainer   ">
+    <div className="loginContainer ">
       <div className="loginWrapper  h-screen bg-[url('https://i.ibb.co/6bsNLj8/hosting-login.jpg')] bgImage flex justify-center items-center  ">
         <div className="loginCard bg-white  shadow-2xl  py-9 px-4 w-[92%] xsm:w-[82%] sm:w-[72%] md:w-[64%] xmd:w-[55%] lg:w-[46%] rounded border border-gray-200    ">
-          <h1 className="  headingFont text-xl sm:text-2xl font-bold xsm:font-semibold sm:font-medium mb-10 text-center  ">
+          <h1 className="mb-10 text-xl font-bold text-center headingFont sm:text-2xl xsm:font-semibold sm:font-medium">
             Login to your account{" "}
           </h1>
 
@@ -123,7 +136,7 @@ const Login = () => {
 
             <button
               disabled={isSubmitting}
-              className=" w-full  py-2 rounded  bg-sky-500 hover:bg-sky-600 navLinkFont text-gray-50 font-medium  text-lg flex justify-center items-center "
+              className="flex items-center justify-center w-full py-2 text-lg font-medium rounded bg-sky-500 hover:bg-sky-600 navLinkFont text-gray-50"
             >
               {isSubmitting ? (
                 <div role="status">
@@ -153,13 +166,13 @@ const Login = () => {
 
           {/* google login button  */}
 
-          <div className="googleLogin  mt-6 flex justify-center  ">
+          <div className="flex justify-center mt-6 googleLogin ">
             <button
               onClick={() => googleLogin()}
-              className="flex items-center justify-center gap-2 rounded border border-gray-300 bg-gray-100 px-8 py-3 text-center text-sm font-semibold text-gray-800 outline-none ring-gray-300 transition duration-100 hover:bg-gray-100 focus-visible:ring active:bg-gray-200 md:text-base"
+              className="flex items-center justify-center gap-2 px-8 py-3 text-sm font-semibold text-center text-gray-800 transition duration-100 bg-gray-100 border border-gray-300 rounded outline-none ring-gray-300 hover:bg-gray-100 focus-visible:ring active:bg-gray-200 md:text-base"
             >
               <svg
-                className="h-5 w-5 shrink-0"
+                className="w-5 h-5 shrink-0"
                 width="24"
                 height="24"
                 viewBox="0 0 24 24"
@@ -189,10 +202,10 @@ const Login = () => {
 
           {/* google login button ends  */}
 
-          <div className="registerDivert  mt-4 text-lg text-center  ">
+          <div className="mt-4 text-lg text-center registerDivert ">
             <p>
               Don't have an account ?{" "}
-              <span className=" text-blue-500 logoFont ">
+              <span className="text-blue-500 logoFont">
                 {" "}
                 <Link to={"/register"}>Register here</Link>{" "}
               </span>

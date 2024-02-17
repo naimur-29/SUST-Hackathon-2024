@@ -1,35 +1,25 @@
 import { useState } from "react";
 import axios from "axios";
 import { useQuery } from "react-query";
+import UseAuth from "../../Hooks/UseAuth";
 
 import { FaRegSquarePlus } from "react-icons/fa6";
 import ListPair from "./ListPair";
 
-const pairs = [
-  {
-    title: "Python to Java",
-  },
-  {
-    title: "Python to JavaScript",
-  },
-  {
-    title: "Python to C++",
-  },
-];
-
 const LanguagePair = () => {
-  // states:
-  const [subMenuOpen, setSubMenuOpen] = useState(
-    new Array(pairs.length).fill(false)
-  );
+  // hooks:
+  const { user } = UseAuth();
 
   // queries:
   const languagePairsQuery = useQuery("fetchLanguagePairs", async () => {
-    const res = await axios.get(
-      `http://localhost:8000/api/pair/oiwrksdfal;skjf304598asfda`
-    );
+    const res = await axios.get(`http://localhost:8000/api/pair/${user?.uid}`);
     return res.data.data;
   });
+
+  // states:
+  const [subMenuOpen, setSubMenuOpen] = useState(
+    new Array(languagePairsQuery?.data?.length).fill(false)
+  );
 
   return (
     <div className="w-full h-full LanguagePairContainer ">
