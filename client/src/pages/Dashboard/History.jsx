@@ -27,11 +27,15 @@ const History = () => {
         {/* history heading ends */}
         <div className="historyCard mt-9 ">
           {!historyQuery.isLoading ? (
-            historyQuery?.data?.map((history, ind) => (
-              <HistoryCard key={ind} history={history} />
-            ))
+            !historyQuery?.data?.length ? (
+              <h3>No histories yet!</h3>
+            ) : (
+              historyQuery?.data?.map((history, ind) => (
+                <HistoryCard key={ind} history={history} />
+              ))
+            )
           ) : (
-            <></>
+            <h3>Loading...</h3>
           )}
         </div>
 

@@ -26,7 +26,7 @@ const LanguagePair = () => {
   // queries:
   const languagePairsQuery = useQuery("fetchLanguagePairs", async () => {
     const res = await axios.get(
-      "http://localhost:8000/api/pair/lasdfkajslf04389lakjsf"
+      `http://localhost:8000/api/pair/oiwrksdfal;skjf304598asfda`
     );
     return res.data.data;
   });
@@ -44,7 +44,9 @@ const LanguagePair = () => {
         {/* pair data starts  */}
         <div className="px-3 mt-6 pairData ">
           <ul className="list-decimal list-inside cursor-pointer ">
-            {languagePairsQuery?.data?.length &&
+            {!languagePairsQuery?.data?.length ? (
+              <h3>No pairs created!</h3>
+            ) : (
               languagePairsQuery?.data?.map((pair, ind) => (
                 <ListPair
                   pair={pair}
@@ -53,7 +55,8 @@ const LanguagePair = () => {
                   subMenuOpen={subMenuOpen}
                   setSubMenuOpen={setSubMenuOpen}
                 />
-              ))}
+              ))
+            )}
           </ul>
         </div>
         {/* pair data ends */}
