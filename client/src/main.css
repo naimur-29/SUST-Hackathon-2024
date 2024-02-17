@@ -14,3 +14,8 @@
   background-repeat: no-repeat;
   background-position: center center;
 }
+
+.active {
+  color: #374151;
+  background-color: #f9fafb;
+}
