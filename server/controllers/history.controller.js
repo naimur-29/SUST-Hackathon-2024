@@ -18,6 +18,21 @@ const historyController = {
       return res.status(404).json({ message: "Not found!", error });
     }
   },
+  async getById(req, res) {
+    try {
+      const query = {
+        id: req.params._id,
+      };
+
+      const data = await HistoryModel.findOne(query);
+      return res
+        .status(200)
+        .json({ data: HistoryResponseSchemas.default(data) });
+    } catch (error) {
+      console.error(error);
+      return res.status(404).json({ message: "Not found!", error });
+    }
+  },
 };
 
 module.exports = historyController;

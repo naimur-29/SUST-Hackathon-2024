@@ -33,13 +33,15 @@ const HistorySchema = new Schema({
 // Response Schemas:
 const HistoryResponseSchemas = {
   default(data) {
-    const res = [];
-    for (const ele of data)
-      res.push({
-        input: ele.content.input,
-        output: ele.content.output,
-      });
-    return res;
+    if (data instanceof Array) {
+      const res = [];
+      for (const ele of data) res.push(ele.content);
+      return res;
+    }
+    return {
+      input: data.content.input,
+      output: data.content.output,
+    };
   },
 };
 
