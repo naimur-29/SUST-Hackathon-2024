@@ -18,14 +18,14 @@ const navLink = [
   },
   {
     item: "Contact",
-    link: "/",
+    link: "/contact",
   },
 ];
 
 const avatarItems = [
   {
     item: "Dashboard",
-    link: "/dashboard",
+    link: "/dashboard/profile",
   },
 ];
 
@@ -91,7 +91,7 @@ const NavBar = () => {
         <div className="navRight  flex justify-between items-center  ">
           <div className="navLinks hidden md:flex  justify-center items-center   mr-1.5 ">
             {navLink.map((ele, ind) => (
-              <NavLink
+              <Link
                 key={ind}
                 to={ele.link}
                 className={`  ${
@@ -101,7 +101,7 @@ const NavBar = () => {
                 {ele.item}
 
                 <span className="absolute -bottom-[.15rem] left-0 w-0 h-[.14rem] bg-blue-400 group-hover:w-full group-hover:transition-all"></span>
-              </NavLink>
+              </Link>
             ))}
           </div>
           {/* !mobile view  */}
