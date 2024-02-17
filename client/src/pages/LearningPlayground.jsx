@@ -73,7 +73,7 @@ const LearningPlayground = () => {
           {/* convert button starts  */}
           <div className="convertBtn mt-[1.5rem] ">
             {/* if there is response data , then Generate button will hidden  */}
-            {data ? (
+            {/* {data ? (
               ""
             ) : (
               <button
@@ -82,7 +82,13 @@ const LearningPlayground = () => {
               >
                 Generate
               </button>
-            )}
+            )} */}
+            <button
+              className=" py-2 px-4 bg-green-600 text-gray-50 font-medium rounded hover:bg-green-700 hover:shadow-lg hover:scale-105 active:scale-100   "
+              onClick={() => handleGenerate()}
+            >
+              Generate
+            </button>
           </div>
           {/* convert button ends */}
 
@@ -118,6 +124,33 @@ const LearningPlayground = () => {
           ) : (
             " "
           )}
+
+          <div className="bottomSection   ">
+            {/* explain container starts  */}
+
+            <div className="explainSection  mt-[2.5rem]  ">
+              {/* explaination title starts  */}
+              <h1 className="  mb-3  font-semibold text-xl ">
+                Explaination (out) :
+              </h1>
+
+              {/* explaination title ends */}
+
+              <p className=" bg-gray-200 text-lg   p-3 rounded   ">
+                my explaination my explaination my explaination my explaination
+                my explaination
+              </p>
+            </div>
+            {/* explain container ends  */}
+
+            {/* more example button starts  */}
+            <div className="moreExample mt-[1rem]  text-end ">
+              <button className=" py-2 px-4 bg-green-600 text-gray-50 hover:bg-green-700 hover:scale-105 active:scale-100 hover:shadow-md rounded     ">
+                More Example{" "}
+              </button>
+            </div>
+            {/* more example button ends */}
+          </div>
 
           {/* BOTTOM SECTION ends  */}
         </div>
