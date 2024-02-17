@@ -93,7 +93,7 @@ const LearningPlayground = () => {
           {/* convert button ends */}
 
           {/* BOTTOM SECTION STARTS  */}
-          {/* if there is no response data , then bottom section will hidden  */}
+          {/* if there is no res  ponse data , then bottom section will hidden  */}
           {data ? (
             <div className="bottomSection   ">
               {/* explain container starts  */}
