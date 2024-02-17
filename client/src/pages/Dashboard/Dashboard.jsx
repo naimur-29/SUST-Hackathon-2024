@@ -43,12 +43,12 @@ const Dashboard = () => {
             <div className="mb-2 topContainer AccountContainer ">
               <div className="flex items-center space-x-4 ">
                 <img
-                  className="w-10 h-10 p-1 rounded-full cursor-pointer ring-2 ring-gray-300 dark:ring-gray-500"
+                  className="w-11 h-11 p-1 rounded-full cursor-pointer ring-2 ring-gray-300 dark:ring-gray-500"
                   src={`${user?.photoURL}`}
                   alt="Bordered avatar"
                 />
 
-                <div className="font-medium dark:text-white sm:block">
+                <div className="font-medium text-white sm:block">
                   <div>
                     <p> {user?.displayName} </p>
                   </div>
