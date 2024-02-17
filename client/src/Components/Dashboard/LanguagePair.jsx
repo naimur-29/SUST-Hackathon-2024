@@ -40,7 +40,7 @@ const LanguagePair = () => {
                 <ListPair
                   pair={pair}
                   key={ind}
-                  ind={ind + 1}
+                  ind={ind}
                   subMenuOpen={subMenuOpen}
                   setSubMenuOpen={setSubMenuOpen}
                 />
