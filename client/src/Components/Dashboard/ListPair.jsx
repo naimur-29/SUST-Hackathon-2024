@@ -42,6 +42,7 @@ const ListPair = ({ pair, ind, subMenuOpen, setSubMenuOpen }) => {
           <div className="menuItem flex flex-col gap-y-1">
             <Link to={"/dashboard/playground"}>Learn </Link>
             <Link to={"/dashboard/learningHistory/:id"}>View history </Link>
+
             <Link>Delete pair </Link>
 
             {/* close button starts  */}
