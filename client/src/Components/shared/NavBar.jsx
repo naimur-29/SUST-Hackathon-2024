@@ -35,7 +35,7 @@ const NavBar = () => {
   const [photourl, setPhotoUrl] = useState(user?.photoURL);
 
   // console.log(user);
-  console.log(user?.photoURL);
+  // console.log(user?.photoURL);
 
   const handleToggle = () => {
     // setToggle(!toggle);
@@ -83,7 +83,7 @@ const NavBar = () => {
                 <p
                   className={`   text-gray-900 dark:text-white text-sm xsm:text-base lg:text-xl  CormorantFont  `}
                 >
-                  Logo name
+                  CodeCompanion
                 </p>
               </div>
             </Link>
@@ -93,7 +93,7 @@ const NavBar = () => {
 
         {/* nav right  */}
         <div className="navRight  flex justify-between items-center  ">
-          <div className="navLinks hidden md:flex  justify-center items-center   mr-1.5 ">
+          <div className="navLinks hidden md:flex  justify-center items-center   mr-1.5   ">
             {navLink.map((ele, ind) => (
               <Link
                 key={ind}
@@ -183,7 +183,7 @@ const NavBar = () => {
 
           {/* toggle button  */}
           <div
-            className="toggleMode  pl-0 md:pl-2 mr-3 md:pr-0 text-xl sm:text-2xl  "
+            className="toggleMode  pl-0 md:pl-2 ml-2 md:ml-0 mr-3 md:pr-0 text-xl sm:text-2xl  "
             onClick={() => handleDarkMode()}
           >
             {darkmode ? <BsFillMoonFill /> : <BsFillSunFill />}
@@ -207,7 +207,7 @@ const NavBar = () => {
             {/* menu list  */}
 
             {navToggle && (
-              <div className="menuList text-center py-2 bg-[#183D3D] dark:bg-gray-300 absolute transform -translate-x-1/2 -translate-y-1/2 -right-[4.8rem] top-[6.3rem] sm:top-[6.7rem] w-[10rem] ">
+              <div className="menuList text-center py-2 bg-[#183D3D] dark:bg-gray-300 absolute transform -translate-x-1/2 -translate-y-1/2 -right-[4.8rem] top-[4.6rem] sm:top-[4.9rem] w-[10rem] ">
                 <div className="menuItem mb-4  ">
                   {navLink.map((ele, ind) => (
                     <div
