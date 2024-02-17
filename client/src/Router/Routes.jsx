@@ -7,6 +7,7 @@ import Login from "../pages/Login";
 import Register from "../pages/Register";
 import Test from "../pages/Test";
 import Dashboard from "../pages/Dashboard/Dashboard";
+import Profile from "../pages/Dashboard/Profile";
 
 export const PageRouter = createBrowserRouter([
   {
@@ -39,6 +40,10 @@ export const PageRouter = createBrowserRouter([
     path: "/dashboard",
     element: <Dashboard />,
     children: [
+      {
+        path: "/dashboard/profile",
+        element: <Profile />,
+      },
       {
         path: "/dashboard/history",
         element: <p>History</p>,

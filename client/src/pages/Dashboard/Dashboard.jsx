@@ -3,32 +3,24 @@ import { useState } from "react";
 import { Link, NavLink, Outlet, useLocation } from "react-router-dom";
 
 // importing icons:
-
-import { BsGraphUpArrow } from "react-icons/bs";
-import { FaBoxOpen, FaUsers } from "react-icons/fa";
-import { CiBookmarkCheck } from "react-icons/ci";
-import { RiProfileFill } from "react-icons/ri";
+import { CgProfile } from "react-icons/cg";
 import { IoIosHome } from "react-icons/io";
-import { IoStatsChart } from "react-icons/io5";
-import { FaUserAstronaut } from "react-icons/fa6";
 import UseAuth from "../../Hooks/UseAuth";
 
-// users menu
+// user menu
 const userMenu = [
   {
-    title: "Book parcel",
-    path: "/dashboard/",
-    icon: <CiBookmarkCheck />,
-  },
-  {
-    title: "My parcels",
-    path: "/dashboard/",
-    icon: <FaBoxOpen />,
-  },
-  {
     title: "My profile",
+    path: "/dashboard/profile",
+    icon: <CgProfile />,
+  },
+  {
+    title: "menu 2",
     path: "/dashboard/",
-    icon: <RiProfileFill />,
+  },
+  {
+    title: "menu 3",
+    path: "/dashboard/",
   },
 ];
 
@@ -116,7 +108,6 @@ const Dashboard = () => {
       {/* sidebar container ends  */}
 
       {/* hamburger menu */}
-      {/* hamburger menu */}
       <div
         onClick={() => setIsSidebarActive(!isSidebarActive)}
         className="fixed bottom-[20px] h-[50px] right-[20px] md:hidden flex flex-col justify-center gap-2 bg-gray-500 p-2 rounded cursor-pointer z-[20] "
@@ -138,9 +129,10 @@ const Dashboard = () => {
         ></div>
       </div>
       {/* hamburger emnu ends  */}
-      {/* hamburger emnu ends  */}
 
-      <div className="w-[100%] md:w-[calc(100%-16rem)]  bg-slate-400">
+      {/* sidebar child component starts  */}
+      {/* <div className="w-[100%] md:w-[calc(100%-16rem)]  bg-slate-400"> */}
+      <div className="w-[100%] md:w-[calc(100%-16rem)]  ">
         <Outlet />
       </div>
       {/* sidebar child components ends */}
