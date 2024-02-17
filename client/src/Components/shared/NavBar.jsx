@@ -13,8 +13,8 @@ const navLink = [
     link: "/",
   },
   {
-    item: "nav link 2",
-    link: "/",
+    item: "Dashboard",
+    link: "/dashboard",
   },
   {
     item: "nav link 3",

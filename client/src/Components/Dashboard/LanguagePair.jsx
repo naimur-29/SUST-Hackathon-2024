@@ -20,7 +20,7 @@ const LanguagePair = () => {
     new Array(pairs.length).fill(false)
   );
 
-  console.log(subMenuOpen);
+  //   console.log(subMenuOpen);
 
   return (
     <div className="LanguagePairContainer   w-full h-full  ">

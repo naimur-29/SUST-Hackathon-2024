@@ -9,6 +9,7 @@ import Test from "../pages/Test";
 import Dashboard from "../pages/Dashboard/Dashboard";
 import Profile from "../pages/Dashboard/Profile";
 import LearningGrounds from "../pages/Dashboard/LearningGrounds";
+import LearningPlayground from "../pages/LearningPlayground";
 
 export const PageRouter = createBrowserRouter([
   {
@@ -48,6 +49,10 @@ export const PageRouter = createBrowserRouter([
       {
         path: "/dashboard/learningGrounds",
         element: <LearningGrounds />,
+      },
+      {
+        path: "/dashboard/playground",
+        element: <LearningPlayground />,
       },
     ],
   },

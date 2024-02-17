@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 
 import { IoClose } from "react-icons/io5";
+import { Link } from "react-router-dom";
 
 const ListPair = ({ pair, ind, subMenuOpen, setSubMenuOpen }) => {
   const { title } = pair;
 
-  //   console.log(ind);
   //   show  sub menu after a pair is clicked
   const handleSubMenuOpen = (ind) => {
     setSubMenuOpen((prev) => {
@@ -15,8 +15,7 @@ const ListPair = ({ pair, ind, subMenuOpen, setSubMenuOpen }) => {
     });
   };
 
-  const handleSubMenuClose = (ind) => {
-    console.log(ind);
+  const handleSubMenuClose = () => {
     setSubMenuOpen((prev) => {
       const newState = new Array(prev.length).fill(false);
       return newState;
@@ -40,18 +39,20 @@ const ListPair = ({ pair, ind, subMenuOpen, setSubMenuOpen }) => {
             subMenuOpen[ind] ? "" : "hidden"
           } z-10 subMenu bg-gray-600 text-gray-50 absolute top-[2.2rem] left-[7rem] p-2  `}
         >
-          {/* close button starts  */}
-          <div className="closeBtn mb-1  flex justify-end  ">
-            <IoClose
-              className="   text-red-500 font-bold text-2xl "
-              onClick={() => handleSubMenuClose(ind)}
-            />
-          </div>
-          {/* close button ends */}
+          <div className="menuItem flex flex-col gap-y-1">
+            <Link to={"/dashboard/playground"}>Learn </Link>
+            <Link>View history </Link>
+            <Link>Delete pair </Link>
 
-          <h1>Sub menu 1 </h1>
-          <h1>Sub menu 2 </h1>
-          <h1>Sub menu 3 </h1>
+            {/* close button starts  */}
+            <div
+              className="closeBtn   flex justify-center  bg-gray-300  "
+              onClick={() => handleSubMenuClose()}
+            >
+              <IoClose className="   text-red-500 font-bold text-2xl " />
+            </div>
+            {/* close button ends */}
+          </div>
         </div>
 
         {/* sub menu ends  */}
@@ -61,30 +62,3 @@ const ListPair = ({ pair, ind, subMenuOpen, setSubMenuOpen }) => {
 };
 
 export default ListPair;
-
-//    <li
-//                   className=" relative  text-2xl my-2.5 cursor-pointer "
-//                   onClick={() => handleLiClick(ind)}
-//                 >
-//                   {pair?.title}
-
-{
-  /* sub menu starts  */
-}
-{
-  /* <div
-                    className={` ${
-                      openSubMenu ? "" : "hidden"
-                    } z-10 subMenu bg-sky-400 absolute top-[2rem] left-[7rem]  `}
-                  >
-                    <h1>Sub menu 1 </h1>
-                    <h1>Sub menu 2 </h1>
-                    <h1>Sub menu 3 </h1>
-                  </div> */
-}
-{
-  /* sub menu starts  */
-}
-{
-  /* </li> */
-}
