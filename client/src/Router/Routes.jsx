@@ -61,7 +61,7 @@ export const PageRouter = createBrowserRouter([
         element: <LearningPlayground />,
       },
       {
-        path: "/dashboard/playground/:hid",
+        path: "/dashboard/playground/:_id",
         element: <LearningPlayground />,
       },
       {

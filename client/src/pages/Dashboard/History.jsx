@@ -1,43 +1,42 @@
-import React from "react";
 import HistoryCard from "../../Components/Dashboard/HistoryCard";
 import { useParams } from "react-router-dom";
-
-const dummyHistory = [
-  {
-    title: "dummy history 1",
-  },
-  {
-    title: "dummy history 2",
-  },
-  {
-    title: "dummy history 3",
-  },
-  {
-    title: "dummy history 4",
-  },
-  {
-    title: "dummy history 5",
-  },
-];
+import axios from "axios";
+import { useQuery } from "react-query";
 
 const History = () => {
-  // const {id} = useParams()
+  // hooks:
+  const { lid } = useParams();
+
+  // queries:
+  const historyQuery = useQuery("fetchHistories", async () => {
+    const res = await axios.get(
+      `http://localhost:8000/api/history/lasdfkajslf04389lakjsf/${lid}`
+    );
+    return res.data.data;
+  });
+
   return (
     <div className="historyContainer ">
-      <div className="historyWrapper  py-9 px-6 ">
+      <div className="px-6 historyWrapper py-9 ">
         {/* history heading starts  */}
 
-        <h1 className=" historyHeading  text-3xl font-medium text-center   ">
+        <h1 className="text-3xl font-medium text-center historyHeading">
           Learning History
         </h1>
 
         {/* history heading ends */}
-
-        <div className="historyCard  mt-9   ">
-          {dummyHistory &&
-            dummyHistory?.map((data, ind) => (
-              <HistoryCard key={ind} data={data} />
-            ))}
+        <div className="historyCard mt-9 ">
+          {!historyQuery.isLoading ? (
+            !historyQuery?.data?.length ? (
+              <h3>No histories yet!</h3>
+            ) : (
+              historyQuery?.data?.map((history, ind) => (
+                <HistoryCard key={ind} history={history} />
+              ))
+            )
+          ) : (
+            <h3>Loading...</h3>
+          )}
         </div>
 
         {/*  */}

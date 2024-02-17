@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+import { useState } from "react";
+import axios from "axios";
+import { useQuery } from "react-query";
 
 import { FaRegSquarePlus } from "react-icons/fa6";
 import ListPair from "./ListPair";
@@ -16,27 +18,36 @@ const pairs = [
 ];
 
 const LanguagePair = () => {
+  // states:
   const [subMenuOpen, setSubMenuOpen] = useState(
     new Array(pairs.length).fill(false)
   );
 
-  //   console.log(subMenuOpen);
+  // queries:
+  const languagePairsQuery = useQuery("fetchLanguagePairs", async () => {
+    const res = await axios.get(
+      `http://localhost:8000/api/pair/oiwrksdfal;skjf304598asfda`
+    );
+    return res.data.data;
+  });
 
   return (
-    <div className="LanguagePairContainer   w-full h-full  ">
-      <div className="LanguagePairWrapper  w-full h-full py-8 px-12 ">
+    <div className="w-full h-full LanguagePairContainer ">
+      <div className="w-full h-full px-12 py-8 LanguagePairWrapper ">
         {/* language pair heading starts  */}
-        <div className="languagepairHeading  text-2xl flex items-center  gap-x-1 bg-gray-200 p-4   ">
-          <h1 className="  cursor-pointer ">Language pairs </h1>
-          <FaRegSquarePlus className=" cursor-pointer " />
+        <div className="flex items-center p-4 text-2xl bg-gray-200 languagepairHeading gap-x-1 ">
+          <h1 className="cursor-pointer ">Language pairs </h1>
+          <FaRegSquarePlus className="cursor-pointer " />
         </div>
         {/* language pair heading ends  */}
 
         {/* pair data starts  */}
-        <div className="pairData mt-6 px-3    ">
-          <ul className="list-decimal list-inside ">
-            {pairs &&
-              pairs.map((pair, ind) => (
+        <div className="px-3 mt-6 pairData ">
+          <ul className="list-decimal list-inside cursor-pointer ">
+            {!languagePairsQuery?.data?.length ? (
+              <h3>No pairs created!</h3>
+            ) : (
+              languagePairsQuery?.data?.map((pair, ind) => (
                 <ListPair
                   pair={pair}
                   key={ind}
@@ -44,7 +55,8 @@ const LanguagePair = () => {
                   subMenuOpen={subMenuOpen}
                   setSubMenuOpen={setSubMenuOpen}
                 />
-              ))}
+              ))
+            )}
           </ul>
         </div>
         {/* pair data ends */}

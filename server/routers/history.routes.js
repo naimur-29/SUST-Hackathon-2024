@@ -7,5 +7,6 @@ const router = express.Router();
 
 // GET ROUTES:
 router.get("/:uid/:lid", historyController.getAllByUidAndLid);
+router.get("/:_id", historyController.getById);
 
 module.exports = router;
