@@ -131,7 +131,7 @@ const NavBar = () => {
             ) : (
               <Link
                 to={`/login`}
-                className=" hidden md:block bg-gray-600 py-2 px-3 lg:px-4  text-white font-semibold text-xs lg:text-sm "
+                className=" hidden md:block bg-gray-600 hover:bg-gray-700 py-2 px-3 lg:px-4  text-white font-semibold text-xs lg:text-sm rounded "
               >
                 Log in
               </Link>
