@@ -28,6 +28,7 @@ async function convertCode(input, languagePairs) {
       // .split("```")[0]
       .split("\n")
       .splice(1, completion.choices[0].message.content.split("\n").length - 2)
+    // .filter((ele) => ele)
   );
 }
 

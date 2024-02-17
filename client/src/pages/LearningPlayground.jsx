@@ -7,6 +7,7 @@ const LearningPlayground = () => {
   const [data, setData] = useState(null);
   const [userInput, setUserInput] = useState("");
   const [explanation, setExplanation] = useState(null);
+  const [currentLine, setCurrentLine] = useState(null);
 
   // api queries:
   const convertCodeMutation = useMutation((data) =>
@@ -29,9 +30,12 @@ const LearningPlayground = () => {
     e.preventDefault();
     setUserInput(e.target.value);
     setData(null);
+    setCurrentLine(null);
+    setExplanation(null);
   };
 
   const handleGenerate = () => {
+    if (!userInput) return;
     convertCodeMutation.mutate({
       input: userInput,
     });
@@ -39,8 +43,9 @@ const LearningPlayground = () => {
   };
 
   // for getting explanation  , after  code click
-  const handleCodeLineExplanation = (data) => {
+  const handleCodeLineExplanation = (data, index) => {
     setExplanation("Loading...");
+    setCurrentLine(index);
     explainCodeMutation.mutate({
       input: data.replace("\n", ""),
     });
@@ -48,11 +53,13 @@ const LearningPlayground = () => {
 
   // useEffects:
   useEffect(() => {
-    console.log("useEffected!");
-    if (convertCodeMutation.isSuccess)
+    if (convertCodeMutation.isSuccess) {
       setData(convertCodeMutation.data.data.data);
-    if (explainCodeMutation.isSuccess)
+    }
+    if (explainCodeMutation.isSuccess) {
+      window.scrollTo(0, 999999);
       setExplanation(explainCodeMutation.data.data.data);
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [convertCodeMutation.isLoading, explainCodeMutation.isLoading]);
 
@@ -107,14 +114,18 @@ const LearningPlayground = () => {
 
             {/* output response container starts  */}
             <div
-              className={`cursor-pointer outputContainer mt-[1rem] flex flex-col gap-y-0   p-3 bg-gray-200 min-h-[100px]`}
+              className={`cursor-pointer outputContainer mt-[1rem] flex flex-col gap-y-0 p-3 bg-gray-200 min-h-[100px]`}
             >
               {data &&
                 data?.map((code, ind) => (
                   <pre key={ind}>
                     <p
-                      className="p-1 rounded codeLine hover:bg-[#fff9]"
-                      onClick={() => handleCodeLineExplanation(code)}
+                      className={`p-1 rounded codeLine hover:bg-[#fff9] ${
+                        currentLine !== null && currentLine === ind
+                          ? "bg-[#fff9]"
+                          : ""
+                      }`}
+                      onClick={() => handleCodeLineExplanation(code, ind)}
                     >
                       {code}
                     </p>
