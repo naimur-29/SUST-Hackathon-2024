@@ -1,4 +1,4 @@
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 // toast for success fully register
@@ -21,7 +21,7 @@ export const termError = () =>
     autoClose: 5000,
     hideProgressBar: false,
     closeOnClick: true,
-    pauseOnHover: true,
+
     draggable: true,
     progress: undefined,
     theme: "colored",
@@ -34,7 +34,7 @@ export const inputFieldError = () =>
     autoClose: 5000,
     hideProgressBar: false,
     closeOnClick: true,
-    pauseOnHover: true,
+
     draggable: true,
     progress: undefined,
     theme: "colored",
@@ -49,7 +49,7 @@ export const passwordValidationError = () =>
       autoClose: 5000,
       hideProgressBar: false,
       closeOnClick: true,
-      pauseOnHover: true,
+
       draggable: true,
       progress: undefined,
       theme: "colored",
@@ -63,7 +63,7 @@ export const loggedInSuccessfully = () =>
     autoClose: 1200,
     hideProgressBar: false,
     closeOnClick: true,
-    pauseOnHover: true,
+
     draggable: true,
     progress: undefined,
     theme: "colored",
@@ -76,7 +76,7 @@ export const errorlogin = () =>
     autoClose: 2000,
     hideProgressBar: false,
     closeOnClick: true,
-    pauseOnHover: true,
+
     draggable: true,
     progress: undefined,
     theme: "colored",
@@ -88,7 +88,6 @@ export const logoutSuccessFully = () =>
     autoClose: 1200,
     hideProgressBar: false,
     closeOnClick: true,
-    pauseOnHover: true,
     draggable: true,
     progress: undefined,
     theme: "colored",
