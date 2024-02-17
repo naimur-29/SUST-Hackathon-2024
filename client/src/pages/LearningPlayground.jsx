@@ -39,8 +39,8 @@ const LearningPlayground = () => {
   };
 
   // for getting explanation  , after  code click
-  const handleCodeLine = (data) => {
-    setData(null);
+  const handleCodeLineExplanation = (data) => {
+    setExplanation("Loading...");
     explainCodeMutation.mutate({
       input: data.replace("\n", ""),
     });
@@ -63,17 +63,17 @@ const LearningPlayground = () => {
         <div className="inputContainer ">
           {/* input container top input  */}
           <div className="userSelectInputSection ">
-            <p className="text-xl font-medium ">Python (In)</p>
+            <p className="text-xl font-medium ">Python (in)</p>
           </div>
           {/* input container top input  */}
 
           {/* user code input container starts   */}
-          <div className="mt-2 userCode ">
+          <div className="mt-4 userCode ">
             <textarea
               onChange={handleUserInputChange}
               value={userInput}
               id="message"
-              rows="4"
+              rows="7"
               className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300     "
               placeholder="Enter your code"
             ></textarea>
@@ -101,7 +101,7 @@ const LearningPlayground = () => {
           <div className="outputContainer  mt-[2.5rem] ">
             {/* user output language select input starts  */}
             <div className="outputLanguageinput">
-              <p className="text-xl font-medium ">Java (Out)</p>
+              <p className="text-xl font-medium ">Java (out)</p>
             </div>
             {/* user output language select input ends  */}
 
@@ -114,7 +114,7 @@ const LearningPlayground = () => {
                   <pre key={ind}>
                     <p
                       className="p-1 rounded codeLine hover:bg-[#fff9]"
-                      onClick={() => handleCodeLine(code)}
+                      onClick={() => handleCodeLineExplanation(code)}
                     >
                       {code}
                     </p>
