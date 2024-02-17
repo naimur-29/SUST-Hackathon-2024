@@ -31,7 +31,7 @@ const Login = () => {
       .then((response) => {
         loggedInSuccessfully();
         setTimeout(() => {
-          navigate(location?.state ? location.state : "/");
+          navigate(location?.state ? location.state : "/dashboard/profile");
         }, 1000);
 
         reset();
@@ -65,7 +65,7 @@ const Login = () => {
       console.log(userEmail);
       loggedInSuccessfully();
       setTimeout(() => {
-        navigate(location?.state ? location.state : "/");
+        navigate(location?.state ? location.state : "/dashboard/profile");
       }, 1000);
     });
   };

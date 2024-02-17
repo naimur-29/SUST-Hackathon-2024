@@ -12,10 +12,7 @@ const navLink = [
     item: "Home",
     link: "/",
   },
-  {
-    item: "About",
-    link: "/",
-  },
+
   {
     item: "Contact",
     link: "/contact",
