@@ -35,7 +35,6 @@ const NavBar = () => {
   const [photourl, setPhotoUrl] = useState(user?.photoURL);
 
   // console.log(user);
-  // console.log(user?.photoURL);
 
   const handleToggle = () => {
     // setToggle(!toggle);
@@ -143,13 +142,13 @@ const NavBar = () => {
             {toggleAvatar && (
               <div
                 id="dropdownAvatar"
-                className="z-10 absolute  top-[6.5rem] -right-[6rem]  md:-right-[5.6rem]  transform -translate-x-1/2 -translate-y-1/2  bg-blue-200 divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600"
+                className="z-10 absolute  top-[6.5rem] -right-[6rem]  md:-right-[5.6rem]  transform -translate-x-1/2 -translate-y-1/2  bg-blue-300 divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600"
               >
                 <div className="px-4 py-3 text-sm text-gray-900 dark:text-white cursor-pointer">
-                  <div> {user?.displayName} </div>
+                  <h1 className=" font-semibold "> {user?.displayName} </h1>
                 </div>
                 <ul
-                  className="py-2 text-sm text-gray-700 dark:text-gray-200   "
+                  className="py-2 text-sm text-gray-700 dark:text-gray-200 font-medium  "
                   aria-labelledby="dropdownUserAvatarButton"
                 >
                   <div className="avatarMenuItems  flex flex-col   ">
