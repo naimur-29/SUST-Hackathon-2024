@@ -32,8 +32,10 @@ const NavBar = () => {
   const [toggleAvatar, setToggleAvatar] = useState(false);
   const [toggle, setToggle] = useState(false);
   const [navToggle, setNavToggle] = useState(false);
+  const [photourl, setPhotoUrl] = useState(user?.photoURL);
 
   // console.log(user);
+  console.log(user?.photoURL);
 
   const handleToggle = () => {
     // setToggle(!toggle);
@@ -52,6 +54,11 @@ const NavBar = () => {
     logoutFunction();
     logoutSuccessFully();
   };
+
+  // use effect to handle user photourl
+  useEffect(() => {
+    setPhotoUrl(user?.photoURL);
+  }, [user, user?.photoURL]);
 
   return (
     <div

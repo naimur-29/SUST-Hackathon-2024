@@ -42,7 +42,7 @@ const Register = () => {
     try {
       const registerResponse = await registerFunction(userEmail, userPassword);
       // console.log(registerResponse);
-      // console.log(registerResponse?.user);
+      // console.log(imageResponse?.data?.data?.display_url);
       if (registerResponse?.user) {
         updateProfile(registerResponse?.user, {
           displayName: userName,
@@ -50,7 +50,7 @@ const Register = () => {
         }).then((response) => {
           registerSuccessfully();
           setTimeout(() => {
-            navigate("/");
+            navigate("/dashboard/profile");
           }, 1200);
         });
       }
