@@ -4,14 +4,14 @@ import NavBar from "../Components/shared/NavBar";
 
 const RootPage = () => {
   return (
-    <div className="rootPageContainer  ">
+    <div className="rootPageContainer   ">
       {/* nav container starts  */}
       <div className="navContainer  ">
         <NavBar />
       </div>
 
       {/* main body  */}
-      <div className="bodyContainer pt-12 xsm:pt-14 sm:pt-16 ">
+      <div className="bodyContainer pt-[3rem] xsm:pt-[4rem] sm:pt-[5rem]  w-[90%] m-auto ">
         <Outlet />
       </div>
 
