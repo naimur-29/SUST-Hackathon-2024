@@ -16,11 +16,11 @@ const RootPage = () => {
       </div>
 
       {/* footer container  */}
-      <div className="footerContainer bg-sky-500  ">
+      {/* <div className="footerContainer bg-sky-500  ">
         <h1>footer container </h1>
         <h1>footer container </h1>
         <h1>footer container </h1>
-      </div>
+      </div> */}
     </div>
   );
 };

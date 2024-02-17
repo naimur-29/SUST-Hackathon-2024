@@ -3,8 +3,7 @@ import { Link, NavLink } from "react-router-dom";
 import { BsFillSunFill, BsFillMoonFill } from "react-icons/bs";
 import { RiMenu3Fill, RiCloseFill, RiXingLine } from "react-icons/ri";
 import { MdOutlineNotifications } from "react-icons/md";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+
 import { logoutSuccessFully } from "../../Utils/Toasts";
 import UseAuth from "../../Hooks/UseAuth";
 
@@ -47,11 +46,13 @@ const NavBar = () => {
 
   const [toggleAvatar, setToggleAvatar] = useState(false);
   const [toggle, setToggle] = useState(false);
+  const [navToggle, setNavToggle] = useState(false);
 
-  console.log(user);
+  // console.log(user);
 
   const handleToggle = () => {
-    setToggle(!toggle);
+    // setToggle(!toggle);
+    setNavToggle(!navToggle);
   };
 
   // dark mode toggle
@@ -71,7 +72,6 @@ const NavBar = () => {
     <div
       className={` navContainer  z-50 py-2.5  bg-gray-100 dark:bg-gray-400  fixed w-full drop-shadow-lg `}
     >
-      <ToastContainer />
       <div className="navWrapper flex justify-between w-[98%] xsm:w-[97%] lg:w-[96%] m-auto items-center ">
         {/* nav left  */}
         <div className="navLeft  ">
@@ -133,7 +133,7 @@ const NavBar = () => {
                 <span className="sr-only">Open user menu</span>
                 <img
                   className="w-8 h-8 rounded-full "
-                  src="/docs/images/people/profile-picture-3.jpg"
+                  src={user?.photoURL}
                   alt="user photo"
                 />
               </button>
@@ -157,10 +157,10 @@ const NavBar = () => {
                   <div> {user?.displayName} </div>
                 </div>
                 <ul
-                  className="py-2 text-sm text-gray-700 dark:text-gray-200"
+                  className="py-2 text-sm text-gray-700 dark:text-gray-200   "
                   aria-labelledby="dropdownUserAvatarButton"
                 >
-                  <div className="avatarMenuItems  flex flex-col  ">
+                  <div className="avatarMenuItems  flex flex-col   ">
                     {avatarItems &&
                       avatarItems?.map((avatarMenu, ind) => (
                         <NavLink
@@ -207,13 +207,14 @@ const NavBar = () => {
               className="menuIcon text-lg xsm:text-xl sm:text-2xl "
               onClick={() => handleToggle()}
             >
-              {!toggle ? <RiMenu3Fill /> : <RiCloseFill />}
+              {/* {!toggle ? <RiMenu3Fill /> : <RiCloseFill />} */}
+              {!navToggle ? <RiMenu3Fill /> : <RiCloseFill />}
             </div>
             {/* menu icon  */}
 
             {/* menu list  */}
 
-            {toggle && (
+            {navToggle && (
               <div className="menuList text-center py-2 bg-[#183D3D] dark:bg-gray-300 absolute transform -translate-x-1/2 -translate-y-1/2 -right-[4.8rem] top-[6.3rem] sm:top-[6.7rem] w-[10rem] ">
                 <div className="menuItem mb-4  ">
                   {navLink.map((ele, ind) => (
@@ -234,25 +235,6 @@ const NavBar = () => {
                     </div>
                   ))}
                 </div>
-
-                {/* {user ? (
-                <Link
-                  className=" bg-amber-300 dark:bg-violet-500 rounded  py-1.5 px-5 text-gray-700 dark:text-white "
-                  onClick={() => {
-                    handleToggle();
-                  }}
-                >
-                  Log out
-                </Link>
-              ) : (
-                <Link
-                  to={`/login`}
-                  className=" bg-amber-300 dark:bg-violet-500 rounded   py-1.5 px-5 text-gray-700 dark:text-white "
-                  onClick={() => handleToggle()}
-                >
-                  Log in
-                </Link>
-              )} */}
               </div>
             )}
             {/* menu list  */}

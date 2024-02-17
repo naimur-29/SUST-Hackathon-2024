@@ -11,9 +11,9 @@ export default function Home() {
   // console.log(test);
 
   // console.log(state);
-  // console.log(user);
+  console.log(user?.photoURL);
   return (
-    <div className="homePageContainer bg-lime-300    ">
+    <div className="homePageContainer     ">
       <h1>home page </h1>
       <h1>home page </h1>
       <h1>home page </h1>
