@@ -187,7 +187,7 @@ const NavBar = () => {
           >
             {darkmode ? <BsFillMoonFill /> : <BsFillSunFill />}
           </div>
-          {/* toggle button  */}
+          {/* toggle button ends  */}
 
           {/*  */}
           {/* mobile view  */}
@@ -201,20 +201,15 @@ const NavBar = () => {
               {/* {!toggle ? <RiMenu3Fill /> : <RiCloseFill />} */}
               {!navToggle ? <RiMenu3Fill /> : <RiCloseFill />}
             </div>
-            {/* menu icon  */}
+            {/* menu icon ends */}
 
             {/* menu list  */}
 
             {navToggle && (
-              <div className="menuList text-center py-2 bg-[#183D3D] dark:bg-gray-300 absolute transform -translate-x-1/2 -translate-y-1/2 -right-[4.8rem] top-[4.6rem] sm:top-[4.9rem] w-[10rem] ">
-                <div className="menuItem mb-4  ">
+              <div className="menuList text-center py-2 bg-[#183D3D] dark:bg-gray-300 absolute transform -translate-x-1/2 -translate-y-1/2 -right-[4.8rem] top-[5.5rem] sm:top-[5.8rem] w-[10rem] ">
+                <div className="menuItem mb-4   ">
                   {navLink.map((ele, ind) => (
-                    <div
-                      key={ind}
-                      className={` text-base ${
-                        ind === navLink.length - 1 ? "pb-0" : "pb-3"
-                      }  `}
-                    >
+                    <div key={ind} className={` text-base pb-3   `}>
                       <a
                         href={ele.link}
                         className="  cursor-pointer text-gray-50 dark:text-gray-900 "
@@ -225,6 +220,20 @@ const NavBar = () => {
                       </a>
                     </div>
                   ))}
+
+                  <Link
+                    to={`/login`}
+                    className=" cursor-pointer text-gray-50 dark:text-gray-900  "
+                    onClick={() => handleToggle()}
+                  >
+                    Log in
+                  </Link>
+                  {/* <Link
+                    to={`/login`}
+                    className="  bg-gray-600 hover:bg-gray-700 py-2 px-3 lg:px-4  text-white font-semibold text-xs lg:text-sm rounded "
+                  >
+                    Log in
+                  </Link> */}
                 </div>
               </div>
             )}
