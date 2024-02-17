@@ -13,31 +13,19 @@ const navLink = [
     link: "/",
   },
   {
-    item: "Dashboard",
-    link: "/dashboard",
-  },
-  {
-    item: "nav link 3",
+    item: "About",
     link: "/",
   },
   {
-    item: "nav link 4",
+    item: "Contact",
     link: "/",
   },
 ];
 
 const avatarItems = [
   {
-    item: "User menu 1",
-    link: "/",
-  },
-  {
-    item: "User menu 2",
-    link: "/",
-  },
-  {
-    item: "User menu 3",
-    link: "/",
+    item: "Dashboard",
+    link: "/dashboard",
   },
 ];
 
@@ -151,7 +139,7 @@ const NavBar = () => {
             {toggleAvatar && (
               <div
                 id="dropdownAvatar"
-                className="z-10 absolute  top-[9.3rem] -right-[6rem]  md:-right-[5.6rem]  transform -translate-x-1/2 -translate-y-1/2  bg-blue-200 divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600"
+                className="z-10 absolute  top-[6.5rem] -right-[6rem]  md:-right-[5.6rem]  transform -translate-x-1/2 -translate-y-1/2  bg-blue-200 divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600"
               >
                 <div className="px-4 py-3 text-sm text-gray-900 dark:text-white cursor-pointer">
                   <div> {user?.displayName} </div>
