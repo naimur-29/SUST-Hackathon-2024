@@ -1,12 +1,17 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { useMutation } from "react-query";
+import { useParams } from "react-router-dom";
 
 const LearningPlayground = () => {
   // states:
   const [data, setData] = useState(null);
   const [userInput, setUserInput] = useState("");
   const [explanation, setExplanation] = useState(null);
+  const [currentLine, setCurrentLine] = useState(null);
+
+  // hooks:
+  const { _id } = useParams();
 
   // api queries:
   const convertCodeMutation = useMutation((data) =>
@@ -29,18 +34,21 @@ const LearningPlayground = () => {
     e.preventDefault();
     setUserInput(e.target.value);
     setData(null);
+    setCurrentLine(null);
+    setExplanation(null);
   };
 
   const handleGenerate = () => {
+    if (!userInput) return;
     convertCodeMutation.mutate({
       input: userInput,
     });
-    console.log("generate button clicked!");
   };
 
   // for getting explanation  , after  code click
-  const handleCodeLine = (data) => {
-    setData(null);
+  const handleCodeLineExplanation = (data, index) => {
+    setExplanation("Loading...");
+    setCurrentLine(index);
     explainCodeMutation.mutate({
       input: data.replace("\n", ""),
     });
@@ -48,13 +56,25 @@ const LearningPlayground = () => {
 
   // useEffects:
   useEffect(() => {
-    console.log("useEffected!");
-    if (convertCodeMutation.isSuccess)
+    if (_id) {
+      axios
+        .get(`http://localhost:8000/api/history/${_id}`)
+        .then((res) => {
+          setUserInput(res?.data?.data?.input);
+          setData(res?.data?.data?.output);
+        })
+        .catch((err) => console.error(err));
+    }
+
+    if (convertCodeMutation.isSuccess) {
       setData(convertCodeMutation.data.data.data);
-    if (explainCodeMutation.isSuccess)
+    }
+    if (explainCodeMutation.isSuccess) {
+      window.scrollTo(0, 999999);
       setExplanation(explainCodeMutation.data.data.data);
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [convertCodeMutation.isLoading, explainCodeMutation.isLoading]);
+  }, [_id, convertCodeMutation.isLoading, explainCodeMutation.isLoading]);
 
   return (
     <div className="learningGroudContainer ">
@@ -63,17 +83,17 @@ const LearningPlayground = () => {
         <div className="inputContainer ">
           {/* input container top input  */}
           <div className="userSelectInputSection ">
-            <p className="text-xl font-medium ">Python (In)</p>
+            <p className="text-xl font-medium ">Python (in)</p>
           </div>
           {/* input container top input  */}
 
           {/* user code input container starts   */}
-          <div className="mt-2 userCode ">
+          <div className="mt-4 userCode ">
             <textarea
               onChange={handleUserInputChange}
               value={userInput}
               id="message"
-              rows="4"
+              rows="7"
               className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300     "
               placeholder="Enter your code"
             ></textarea>
@@ -101,20 +121,24 @@ const LearningPlayground = () => {
           <div className="outputContainer  mt-[2.5rem] ">
             {/* user output language select input starts  */}
             <div className="outputLanguageinput">
-              <p className="text-xl font-medium ">Java (Out)</p>
+              <p className="text-xl font-medium ">Java (out)</p>
             </div>
             {/* user output language select input ends  */}
 
             {/* output response container starts  */}
             <div
-              className={`cursor-pointer outputContainer mt-[1rem] flex flex-col gap-y-0   p-3 bg-gray-200 min-h-[100px]`}
+              className={`cursor-pointer outputContainer mt-[1rem] flex flex-col gap-y-0 p-3 bg-gray-200 min-h-[100px]`}
             >
               {data &&
                 data?.map((code, ind) => (
                   <pre key={ind}>
                     <p
-                      className="p-1 rounded codeLine hover:bg-[#fff9]"
-                      onClick={() => handleCodeLine(code)}
+                      className={`p-1 rounded codeLine hover:bg-[#fff9] ${
+                        currentLine !== null && currentLine === ind
+                          ? "bg-[#fff9]"
+                          : ""
+                      }`}
+                      onClick={() => handleCodeLineExplanation(code, ind)}
                     >
                       {code}
                     </p>
