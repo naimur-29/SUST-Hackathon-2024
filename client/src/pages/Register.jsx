@@ -48,10 +48,8 @@ const Register = () => {
       }).then((response) => {
         registerSuccessfully();
         setTimeout(() => {
-          navigate("/login");
+          navigate("/");
         }, 1200);
-
-        logoutFunction();
       });
     }
 
