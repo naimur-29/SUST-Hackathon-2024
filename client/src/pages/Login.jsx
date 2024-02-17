@@ -31,16 +31,12 @@ const Login = () => {
       .then((response) => {
         loggedInSuccessfully();
         setTimeout(() => {
-          navigate(location?.state ? location.state : "/");
+          navigate(location?.state ? location.state : "/dashboard/profile");
         }, 1000);
 
         reset();
       })
       .catch((error) => {
-        // console.log(error);
-
-        // console.log(error?.code);
-
         toast.error(`${error?.code}`, {
           position: "top-center",
           autoClose: 2000,
@@ -56,8 +52,6 @@ const Login = () => {
 
   // function for login  with google
   const googleLogin = () => {
-    // console.log("google ");
-
     const provider = new GoogleAuthProvider(auth);
 
     signInWithPopup(auth, provider).then((response) => {
@@ -65,7 +59,7 @@ const Login = () => {
       console.log(userEmail);
       loggedInSuccessfully();
       setTimeout(() => {
-        navigate(location?.state ? location.state : "/");
+        navigate(location?.state ? location.state : "/dashboard/profile");
       }, 1000);
     });
   };
@@ -74,13 +68,13 @@ const Login = () => {
     <div className="loginContainer   ">
       <div className="loginWrapper  h-screen bg-[url('https://i.ibb.co/6bsNLj8/hosting-login.jpg')] bgImage flex justify-center items-center  ">
         <div className="loginCard bg-white  shadow-2xl  py-9 px-4 w-[92%] xsm:w-[82%] sm:w-[72%] md:w-[64%] xmd:w-[55%] lg:w-[46%] rounded border border-gray-200    ">
-          <h1 className="  headingFont text-xl sm:text-2xl font-bold xsm:font-semibold sm:font-medium mb-10 text-center  ">
+          <h1 className="  headingFont text-xl sm:text-2xl font-bold xsm:font-semibold sm:font-medium mb-5  sm:mb-6 md:mb-8 lg:mb-10 text-center  ">
             Login to your account{" "}
           </h1>
 
           <form
             onSubmit={handleSubmit(handleLogin)}
-            className=" w-[92%] xsm:w-[80%] sm:w-[76%] md:w-[72%] m-auto flex flex-col gap-8  "
+            className=" w-[92%] xsm:w-[80%] sm:w-[76%] md:w-[72%] m-auto flex flex-col gap-4 xsm:gap-5 sm:gap-6 md:gap-7 lg:gap-8  "
           >
             {/* email input  */}
             <div className="emailInput">
@@ -123,7 +117,7 @@ const Login = () => {
 
             <button
               disabled={isSubmitting}
-              className=" w-full  py-2 rounded  bg-sky-500 hover:bg-sky-600 navLinkFont text-gray-50 font-medium  text-lg flex justify-center items-center "
+              className=" w-full  py-2 rounded  bg-sky-500 hover:bg-sky-600 text-gray-50 font-medium  text-lg flex justify-center items-center "
             >
               {isSubmitting ? (
                 <div role="status">
@@ -153,7 +147,7 @@ const Login = () => {
 
           {/* google login button  */}
 
-          <div className="googleLogin  mt-6 flex justify-center  ">
+          <div className="googleLogin mt-3  sm:mt-4 xmd:mt-5 lg:mt-6 flex justify-center  ">
             <button
               onClick={() => googleLogin()}
               className="flex items-center justify-center gap-2 rounded border border-gray-300 bg-gray-100 px-8 py-3 text-center text-sm font-semibold text-gray-800 outline-none ring-gray-300 transition duration-100 hover:bg-gray-100 focus-visible:ring active:bg-gray-200 md:text-base"
@@ -189,7 +183,7 @@ const Login = () => {
 
           {/* google login button ends  */}
 
-          <div className="registerDivert  mt-4 text-lg text-center  ">
+          <div className="registerDivert  mt-4 text-sm sm:text-base md:text-lg text-center  ">
             <p>
               Don't have an account ?{" "}
               <span className=" text-blue-500 logoFont ">

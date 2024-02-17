@@ -24,7 +24,7 @@ const Register = () => {
     reset,
   } = useForm();
 
-  // registration function
+  // funtion for handling new user
   const handleRegister = async (data) => {
     const userEmail = data?.email;
     const userName = data?.userName;
@@ -41,8 +41,6 @@ const Register = () => {
 
     try {
       const registerResponse = await registerFunction(userEmail, userPassword);
-      // console.log(registerResponse);
-      // console.log(registerResponse?.user);
       if (registerResponse?.user) {
         updateProfile(registerResponse?.user, {
           displayName: userName,
@@ -50,7 +48,7 @@ const Register = () => {
         }).then((response) => {
           registerSuccessfully();
           setTimeout(() => {
-            navigate("/");
+            navigate("/dashboard/profile");
           }, 1200);
         });
       }
@@ -76,13 +74,13 @@ const Register = () => {
     <div className="registerContainer">
       <div className="registerWraper py-8 bg-[url('https://i.ibb.co/6bsNLj8/hosting-login.jpg')] bgImage flex justify-center items-center ">
         {/* registration card  */}
-        <div className="registerCard  bg-white  shadow-2xl  py-9 px-4 w-[92%] xsm:w-[86%] sm:w-[78%] md:w-[72%] xmd:w-[65%] lg:w-[55%] rounded-md border border-gray-200  ">
-          <h1 className=" text-3xl font-medium text-center mb-11 ">
+        <div className="registerCard  bg-white  shadow-2xl  py-9 px-4 w-[94%] xsm:w-[88%] sm:w-[81%] md:w-[76%] xmd:w-[68%] lg:w-[56%] rounded-md border border-gray-200  ">
+          <h1 className=" text-xl xsm:text-2xl md:text-3xl font-bold text-center mb-4  sm:mb-6 md:mb-8 lg:mb-10 ">
             Register{" "}
           </h1>
           <form
             onSubmit={handleSubmit(handleRegister)}
-            className=" w-[93%] xsm:w-[90%] sm:w-[88%] md:w-[84%] m-auto flex flex-col gap-6  "
+            className=" w-[98%] xsm:w-[96%] sm:w-[93%] md:w-[88%] m-auto flex flex-col gap-3 xsm:gap-5 sm:gap-6   "
           >
             {/* user name input  */}
             <div className="userInput flex flex-col gap-1 ">
@@ -223,7 +221,7 @@ const Register = () => {
               )}
             </button>
           </form>
-          <div className="registerDivert  mt-5 text-lg text-center  ">
+          <div className="registerDivert  mt-3 sm:mt-4 lg:mt-5 text-sm  xsm:text-base md:text-lg text-center  ">
             <p>
               Already have an account ?{" "}
               <span className=" text-blue-500 logoFont ">
