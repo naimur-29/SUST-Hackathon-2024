@@ -12,10 +12,7 @@ const navLink = [
     item: "Home",
     link: "/",
   },
-  {
-    item: "About",
-    link: "/",
-  },
+
   {
     item: "Contact",
     link: "/contact",
@@ -35,6 +32,7 @@ const NavBar = () => {
   const [toggleAvatar, setToggleAvatar] = useState(false);
   const [toggle, setToggle] = useState(false);
   const [navToggle, setNavToggle] = useState(false);
+  const [photourl, setPhotoUrl] = useState(user?.photoURL);
 
   // console.log(user);
 
@@ -55,6 +53,11 @@ const NavBar = () => {
     logoutFunction();
     logoutSuccessFully();
   };
+
+  // use effect to handle user photourl
+  useEffect(() => {
+    setPhotoUrl(user?.photoURL);
+  }, [user, user?.photoURL]);
 
   return (
     <div
@@ -79,7 +82,7 @@ const NavBar = () => {
                 <p
                   className={`   text-gray-900 dark:text-white text-sm xsm:text-base lg:text-xl  CormorantFont  `}
                 >
-                  Logo name
+                  CodeCompanion
                 </p>
               </div>
             </Link>
@@ -89,7 +92,7 @@ const NavBar = () => {
 
         {/* nav right  */}
         <div className="navRight  flex justify-between items-center  ">
-          <div className="navLinks hidden md:flex  justify-center items-center   mr-1.5 ">
+          <div className="navLinks hidden md:flex  justify-center items-center   mr-1.5   ">
             {navLink.map((ele, ind) => (
               <Link
                 key={ind}
@@ -128,7 +131,7 @@ const NavBar = () => {
             ) : (
               <Link
                 to={`/login`}
-                className=" hidden md:block bg-gray-600 py-2 px-3 lg:px-4  text-white font-semibold text-xs lg:text-sm "
+                className=" hidden md:block bg-gray-600 hover:bg-gray-700 py-2 px-3 lg:px-4  text-white font-semibold text-xs lg:text-sm rounded "
               >
                 Log in
               </Link>
@@ -139,13 +142,13 @@ const NavBar = () => {
             {toggleAvatar && (
               <div
                 id="dropdownAvatar"
-                className="z-10 absolute  top-[6.5rem] -right-[6rem]  md:-right-[5.6rem]  transform -translate-x-1/2 -translate-y-1/2  bg-blue-200 divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600"
+                className="z-10 absolute  top-[6.5rem] -right-[6rem]  md:-right-[5.6rem]  transform -translate-x-1/2 -translate-y-1/2  bg-blue-300 divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600"
               >
                 <div className="px-4 py-3 text-sm text-gray-900 dark:text-white cursor-pointer">
-                  <div> {user?.displayName} </div>
+                  <h1 className=" font-semibold "> {user?.displayName} </h1>
                 </div>
                 <ul
-                  className="py-2 text-sm text-gray-700 dark:text-gray-200   "
+                  className="py-2 text-sm text-gray-700 dark:text-gray-200 font-medium  "
                   aria-labelledby="dropdownUserAvatarButton"
                 >
                   <div className="avatarMenuItems  flex flex-col   ">
@@ -179,7 +182,7 @@ const NavBar = () => {
 
           {/* toggle button  */}
           <div
-            className="toggleMode  pl-0 md:pl-2 mr-3 md:pr-0 text-xl sm:text-2xl  "
+            className="toggleMode  pl-0 md:pl-2 ml-2 md:ml-0 mr-3 md:pr-0 text-xl sm:text-2xl  "
             onClick={() => handleDarkMode()}
           >
             {darkmode ? <BsFillMoonFill /> : <BsFillSunFill />}
@@ -203,7 +206,7 @@ const NavBar = () => {
             {/* menu list  */}
 
             {navToggle && (
-              <div className="menuList text-center py-2 bg-[#183D3D] dark:bg-gray-300 absolute transform -translate-x-1/2 -translate-y-1/2 -right-[4.8rem] top-[6.3rem] sm:top-[6.7rem] w-[10rem] ">
+              <div className="menuList text-center py-2 bg-[#183D3D] dark:bg-gray-300 absolute transform -translate-x-1/2 -translate-y-1/2 -right-[4.8rem] top-[4.6rem] sm:top-[4.9rem] w-[10rem] ">
                 <div className="menuItem mb-4  ">
                   {navLink.map((ele, ind) => (
                     <div

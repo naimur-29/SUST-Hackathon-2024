@@ -11,7 +11,7 @@ const RootPage = () => {
       </div>
 
       {/* main body  */}
-      <div className="bodyContainer pt-[3rem] xsm:pt-[4rem] sm:pt-[5rem]  w-[90%] m-auto ">
+      <div className="bodyContainer pt-[3rem] xsm:pt-[4rem] sm:pt-[5rem] w-[95%] xsm:w-[93%]  sm:w-[90%] m-auto ">
         <Outlet />
       </div>
 
