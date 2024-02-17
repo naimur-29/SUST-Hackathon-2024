@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Link, NavLink, Outlet, useLocation } from "react-router-dom";
 
 // importing icons:
+import { FaCode } from "react-icons/fa";
 import { CgProfile } from "react-icons/cg";
 import { IoIosHome } from "react-icons/io";
 import UseAuth from "../../Hooks/UseAuth";
@@ -15,12 +16,9 @@ const userMenu = [
     icon: <CgProfile />,
   },
   {
-    title: "menu 2",
-    path: "/dashboard/",
-  },
-  {
-    title: "menu 3",
-    path: "/dashboard/",
+    title: "Learning grounds",
+    path: "/dashboard/learningGrounds",
+    icon: <FaCode />,
   },
 ];
 
@@ -29,7 +27,7 @@ const Dashboard = () => {
   const { user, loading } = UseAuth();
   const location = useLocation();
 
-  console.log(user);
+  //   console.log(user);
 
   return (
     <section className="relative flex justify-end">
