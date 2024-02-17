@@ -40,15 +40,15 @@ const Dashboard = () => {
         <div className="flex">
           <div className="relative w-64 h-screen p-5 pt-5 duration-300 bg-gray-600 mainContainer sm:w-64">
             {/* top account container starts */}
-            <div className="topContainer AccountContainer mb-2 ">
+            <div className="mb-2 topContainer AccountContainer ">
               <div className="flex items-center space-x-4 ">
                 <img
-                  className="w-10 h-10 p-1 rounded-full ring-2 ring-gray-300 dark:ring-gray-500 cursor-pointer"
+                  className="w-10 h-10 p-1 rounded-full cursor-pointer ring-2 ring-gray-300 dark:ring-gray-500"
                   src={`${user?.photoURL}`}
                   alt="Bordered avatar"
                 />
 
-                <div className=" font-medium dark:text-white sm:block">
+                <div className="font-medium dark:text-white sm:block">
                   <div>
                     <p> {user?.displayName} </p>
                   </div>
@@ -62,9 +62,9 @@ const Dashboard = () => {
 
             <Link
               to={"/"}
-              className={`flex rounded-md mt-10 py-3 px-2 cursor-pointer text-gray-300 hover:bg-gray-50 hover:text-gray-700 text-sm items-center gap-x-4`}
+              className={`flex rounded-md mt-10 py-3 px-2 cursor-pointer text-gray-300 hover:bg-gray-50 hover:text-gray-700 text-sm items-center gap-x-4 bg-[#fff3]`}
             >
-              <div className="icon text-lg">
+              <div className="text-lg icon">
                 {" "}
                 <IoIosHome />{" "}
               </div>
@@ -73,7 +73,7 @@ const Dashboard = () => {
               </h1>
             </Link>
 
-            <div className="sidebarList mt-2  ">
+            <div className="mt-2 sidebarList">
               {/*  */}
 
               {/* normal user side links  */}
@@ -83,9 +83,9 @@ const Dashboard = () => {
                   <NavLink
                     to={ele.path}
                     key={ind}
-                    className={`flex rounded-md py-3 px-2 cursor-pointer text-gray-300 hover:bg-gray-50 hover:text-gray-700 text-sm items-center gap-x-4`}
+                    className={`flex rounded-md py-3 px-2 cursor-pointer bg-[#fff3] text-gray-300 hover:bg-gray-50 hover:text-gray-700 text-sm items-center gap-x-4 mb-2`}
                   >
-                    <div className="icon text-lg">{ele.icon}</div>
+                    <div className="text-lg icon">{ele.icon}</div>
                     <h1 className={` gap-1  origin-left duration-200 w-full `}>
                       {ele.title}
                     </h1>

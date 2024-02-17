@@ -21,7 +21,7 @@ const historyController = {
   async getById(req, res) {
     try {
       const query = {
-        id: req.params._id,
+        _id: req.params._id,
       };
 
       const data = await HistoryModel.findOne(query);

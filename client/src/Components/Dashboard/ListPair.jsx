@@ -38,12 +38,10 @@ const ListPair = ({ pair, ind, subMenuOpen, setSubMenuOpen }) => {
         >
           <div className="flex flex-col menuItem gap-y-1">
             <Link to={"/dashboard/playground"}>Learn </Link>
-<<<<<<< HEAD
-            <Link to={`/dashboard/histories/${pair.lid}`}>View history </Link>
-=======
-            <Link to={"/dashboard/learningHistory/:id"}>View history </Link>
+            <Link to={`/dashboard/learningHistory/${pair.lid}`}>
+              View history{" "}
+            </Link>
 
->>>>>>> 9559fcea6ab13e2480c34b5e0cf6699f834b7ce6
             <Link>Delete pair </Link>
 
             {/* close button starts  */}

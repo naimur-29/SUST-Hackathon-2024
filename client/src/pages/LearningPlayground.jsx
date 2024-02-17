@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { useMutation } from "react-query";
+import { useParams } from "react-router-dom";
 
 const LearningPlayground = () => {
   // states:
@@ -8,6 +9,9 @@ const LearningPlayground = () => {
   const [userInput, setUserInput] = useState("");
   const [explanation, setExplanation] = useState(null);
   const [currentLine, setCurrentLine] = useState(null);
+
+  // hooks:
+  const { _id } = useParams();
 
   // api queries:
   const convertCodeMutation = useMutation((data) =>
@@ -39,7 +43,6 @@ const LearningPlayground = () => {
     convertCodeMutation.mutate({
       input: userInput,
     });
-    console.log("generate button clicked!");
   };
 
   // for getting explanation  , after  code click
@@ -53,6 +56,16 @@ const LearningPlayground = () => {
 
   // useEffects:
   useEffect(() => {
+    if (_id) {
+      axios
+        .get(`http://localhost:8000/api/history/${_id}`)
+        .then((res) => {
+          setUserInput(res?.data?.data?.input);
+          setData(res?.data?.data?.output);
+        })
+        .catch((err) => console.error(err));
+    }
+
     if (convertCodeMutation.isSuccess) {
       setData(convertCodeMutation.data.data.data);
     }
@@ -61,7 +74,7 @@ const LearningPlayground = () => {
       setExplanation(explainCodeMutation.data.data.data);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [convertCodeMutation.isLoading, explainCodeMutation.isLoading]);
+  }, [_id, convertCodeMutation.isLoading, explainCodeMutation.isLoading]);
 
   return (
     <div className="learningGroudContainer ">

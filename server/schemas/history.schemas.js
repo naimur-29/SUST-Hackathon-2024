@@ -35,7 +35,12 @@ const HistoryResponseSchemas = {
   default(data) {
     if (data instanceof Array) {
       const res = [];
-      for (const ele of data) res.push(ele.content);
+      for (const ele of data)
+        res.push({
+          _id: ele._id,
+          input: ele.content.input,
+          output: ele.content.output,
+        });
       return res;
     }
     return {
