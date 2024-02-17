@@ -8,8 +8,10 @@ import UseAuth from "../Hooks/UseAuth";
 import { updateProfile } from "firebase/auth";
 import axios from "axios";
 import UseAxiosPublic from "../Hooks/UseAxiosPublic";
+import { useMutation } from "react-query";
 
 const Register = () => {
+  // hooks:
   const axiosPublicUrl = UseAxiosPublic();
 
   const { user, logoutFunction, registerFunction } = UseAuth();
@@ -24,7 +26,12 @@ const Register = () => {
     reset,
   } = useForm();
 
-  // funtion for handling new user
+  // queries:
+  const addUserMutation = useMutation((userInfo) =>
+    axios.post("http://localhost:8000/api/user", userInfo)
+  );
+
+  // registration function
   const handleRegister = async (data) => {
     const userEmail = data?.email;
     const userName = data?.userName;
@@ -42,6 +49,13 @@ const Register = () => {
     try {
       const registerResponse = await registerFunction(userEmail, userPassword);
       if (registerResponse?.user) {
+        // create user:
+        console.log(registerResponse?.user?.uid);
+        addUserMutation.mutate({
+          uid: registerResponse?.user?.uid,
+          name: registerResponse?.user?.email.split("@")[0],
+        });
+
         updateProfile(registerResponse?.user, {
           displayName: userName,
           photoURL: imageResponse?.data?.data?.display_url,
@@ -75,7 +89,7 @@ const Register = () => {
       <div className="registerWraper py-8 bg-[url('https://i.ibb.co/6bsNLj8/hosting-login.jpg')] bgImage flex justify-center items-center ">
         {/* registration card  */}
         <div className="registerCard  bg-white  shadow-2xl  py-9 px-4 w-[94%] xsm:w-[88%] sm:w-[81%] md:w-[76%] xmd:w-[68%] lg:w-[56%] rounded-md border border-gray-200  ">
-          <h1 className=" text-xl xsm:text-2xl md:text-3xl font-bold text-center mb-4  sm:mb-6 md:mb-8 lg:mb-10 ">
+          <h1 className="mb-4 text-xl font-bold text-center  xsm:text-2xl md:text-3xl sm:mb-6 md:mb-8 lg:mb-10">
             Register{" "}
           </h1>
           <form
@@ -83,7 +97,7 @@ const Register = () => {
             className=" w-[98%] xsm:w-[96%] sm:w-[93%] md:w-[88%] m-auto flex flex-col gap-3 xsm:gap-5 sm:gap-6   "
           >
             {/* user name input  */}
-            <div className="userInput flex flex-col gap-1 ">
+            <div className="flex flex-col gap-1 userInput ">
               <label className="" htmlFor="name">
                 User name
               </label>
@@ -106,13 +120,13 @@ const Register = () => {
             {/* user name input ends  */}
 
             {/* user image field  */}
-            <div className="userImage flex flex-col gap-1  ">
+            <div className="flex flex-col gap-1 userImage ">
               <label htmlFor="file_input">User image</label>
               <input
                 {...register("file_input", {
                   required: "user image is required",
                 })}
-                className="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50  "
+                className="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 "
                 id="file_input"
                 type="file"
               />
@@ -126,7 +140,7 @@ const Register = () => {
             {/* user image field  */}
 
             {/* email input  */}
-            <div className="emailInput flex flex-col gap-1 ">
+            <div className="flex flex-col gap-1 emailInput ">
               <label htmlFor="email">User Email</label>
               <input
                 type="email"
@@ -147,7 +161,7 @@ const Register = () => {
             {/* email input  */}
 
             {/* password input  */}
-            <div className="passwordInput flex flex-col gap-1 ">
+            <div className="flex flex-col gap-1 passwordInput ">
               <label htmlFor="password">Password</label>
               <input
                 type="password"
@@ -171,7 +185,7 @@ const Register = () => {
             {/* password input  */}
 
             {/* confirm password input  */}
-            <div className="confirmPassword flex flex-col gap-1">
+            <div className="flex flex-col gap-1 confirmPassword">
               <label htmlFor="confirmPassword">Confirm password</label>
               <input
                 type="password"
@@ -194,7 +208,7 @@ const Register = () => {
 
             <button
               disabled={isSubmitting}
-              className=" w-full  py-2 rounded  bg-sky-500 hover:bg-sky-600 navLinkFont text-gray-50 font-medium  text-lg  flex justify-center items-center "
+              className="flex items-center justify-center w-full py-2 text-lg font-medium rounded bg-sky-500 hover:bg-sky-600 navLinkFont text-gray-50"
             >
               {isSubmitting ? (
                 <div role="status  ">
@@ -221,10 +235,10 @@ const Register = () => {
               )}
             </button>
           </form>
-          <div className="registerDivert  mt-3 sm:mt-4 lg:mt-5 text-sm  xsm:text-base md:text-lg text-center  ">
+          <div className="mt-3 text-sm text-center registerDivert sm:mt-4 lg:mt-5 xsm:text-base md:text-lg ">
             <p>
               Already have an account ?{" "}
-              <span className=" text-blue-500 logoFont ">
+              <span className="text-blue-500 logoFont">
                 {" "}
                 <Link to={"/login"}>Login</Link>{" "}
               </span>

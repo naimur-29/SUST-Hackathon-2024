@@ -12,10 +12,6 @@ const UserSchema = new Schema({
     type: String,
     required: true,
   },
-  university: {
-    type: String,
-    required: true,
-  },
 });
 
 // Response Schemas:
@@ -28,7 +24,6 @@ const UserResponseSchemas = {
         res.push({
           uid: ele.uid,
           name: ele.name,
-          university: ele.university,
         });
       return res;
     }
@@ -37,7 +32,6 @@ const UserResponseSchemas = {
     return {
       uid: data.uid,
       name: data.name,
-      university: data.university,
     };
   },
 };

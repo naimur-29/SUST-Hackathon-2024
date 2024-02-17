@@ -75,7 +75,7 @@ const languagePairController = {
     try {
       const query = {
         uid: req.params.uid,
-        lid: req.params.lid,
+        _id: req.params._id,
       };
 
       // user input code:
@@ -93,7 +93,7 @@ const languagePairController = {
 
       // add convert history:
       await HistoryModel.create({
-        lid: query.lid,
+        lid: query._id,
         uid: query.uid,
         content: {
           input,
@@ -111,7 +111,7 @@ const languagePairController = {
     try {
       const query = {
         uid: req.params.uid,
-        lid: req.params.lid,
+        _id: req.params._id,
       };
 
       const input = req.body.input;

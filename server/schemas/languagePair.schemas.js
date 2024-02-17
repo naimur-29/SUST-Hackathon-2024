@@ -2,12 +2,6 @@ const { Schema } = require("mongoose");
 
 // Main Schema:
 const LanguagePairSchema = new Schema({
-  lid: {
-    // languagePair ID
-    type: String,
-    required: true,
-    unique: true,
-  },
   uid: {
     type: String,
     required: true,
@@ -26,7 +20,7 @@ const LanguagePairResponseSchemas = {
       const res = [];
       for (const ele of data)
         res.push({
-          lid: ele.lid,
+          _id: ele._id,
           name: ele.name,
         });
       return res;
@@ -34,7 +28,7 @@ const LanguagePairResponseSchemas = {
 
     // one item:
     return {
-      lid: data.lid,
+      _id: data._id,
       name: data.name,
     };
   },

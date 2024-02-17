@@ -16,14 +16,14 @@ const LearningPlayground = () => {
   // api queries:
   const convertCodeMutation = useMutation((data) =>
     axios.post(
-      "http://localhost:8000/api/pair/lasdfkajslf04389lakjsf/PythonToJava",
+      "http://localhost:8000/api/pair/oiwrksdfal;skjf304598asfda/PythonToJava",
       data
     )
   );
 
   const explainCodeMutation = useMutation((data) =>
     axios.post(
-      "http://localhost:8000/api/pair/lasdfkajslf04389lakjsf/PythonToJava/explain",
+      "http://localhost:8000/api/pair/oiwrksdfal;skjf304598asfda/PythonToJava/explain",
       data
     )
   );

@@ -1,29 +1,16 @@
 import { useState } from "react";
 import axios from "axios";
 import { useQuery } from "react-query";
+import UseAuth from "../../Hooks/UseAuth";
 
 import { FaRegSquarePlus } from "react-icons/fa6";
 import { RxCross1 } from "react-icons/rx";
 
 import ListPair from "./ListPair";
 
-const pairs = [
-  {
-    title: "Python to Java",
-  },
-  {
-    title: "Python to JavaScript",
-  },
-  {
-    title: "Python to C++",
-  },
-];
-
 const LanguagePair = () => {
-  // states:
-  const [subMenuOpen, setSubMenuOpen] = useState(
-    new Array(pairs.length).fill(false)
-  );
+  // hooks:
+  const { user } = UseAuth();
 
   const [pairModal, setPairModal] = useState(false);
   // for taking new pair
@@ -32,28 +19,20 @@ const LanguagePair = () => {
 
   // queries:
   const languagePairsQuery = useQuery("fetchLanguagePairs", async () => {
-    const res = await axios.get(
-      `http://localhost:8000/api/pair/oiwrksdfal;skjf304598asfda`
-    );
+    const res = await axios.get(`http://localhost:8000/api/pair/${user?.uid}`);
     return res.data.data;
   });
 
-  // function for showing modal
-  const addIconClick = () => {
-    setPairModal(!pairModal);
-  };
-
-  // function for adding new pair
-  const addPair = () => {
-    console.log(from);
-    console.log(to);
-  };
+  // states:
+  const [subMenuOpen, setSubMenuOpen] = useState(
+    new Array(languagePairsQuery?.data?.length).fill(false)
+  );
 
   return (
     <div className="w-full h-full LanguagePairContainer ">
       <div className="w-full h-full px-12 py-8 LanguagePairWrapper ">
         {/* language pair heading starts  */}
-        <div className=" relative flex items-center p-4 text-2xl bg-gray-200 languagepairHeading gap-x-1 ">
+        <div className="relative flex items-center p-4 text-2xl bg-gray-200  languagepairHeading gap-x-1">
           <h1 className="cursor-pointer ">Language pairs </h1>
           <FaRegSquarePlus
             className="cursor-pointer "
@@ -69,9 +48,9 @@ const LanguagePair = () => {
             }    selectModal  bg-sky-300 p-2 w-[32rem] rounded  `}
           >
             {/* cross button starts  */}
-            <div className="crossBtn  flex justify-end mb-2 ">
+            <div className="flex justify-end mb-2 crossBtn ">
               <RxCross1
-                className="  text-red-600 font-bold text-3xl cursor-pointer  "
+                className="text-3xl font-bold text-red-600 cursor-pointer "
                 onClick={() => addIconClick()}
               />
             </div>
@@ -79,7 +58,7 @@ const LanguagePair = () => {
 
             {/* input section starts  */}
 
-            <div className="inputSection  flex justify-between items-center self-center gap-2   ">
+            <div className="flex items-center self-center justify-between gap-2 inputSection ">
               {/* left input starts  */}
               <div className="leftInput  w-[50%] ">
                 <label
@@ -129,9 +108,9 @@ const LanguagePair = () => {
             {/* input section ends  */}
 
             {/* create button starts  */}
-            <div className="createBtn mt-3  text-center ">
+            <div className="mt-3 text-center createBtn ">
               <button
-                className="  py-2 px-4 bg-green-600 hover:bg-green-700 text-gray-50 rounded active:scale-95 text-base  "
+                className="px-4 py-2 text-base bg-green-600 rounded  hover:bg-green-700 text-gray-50 active:scale-95"
                 onClick={() => addPair()}
               >
                 Create
