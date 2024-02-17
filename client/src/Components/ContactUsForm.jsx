@@ -3,7 +3,7 @@ import React from "react";
 const ContactUsForm = () => {
   return (
     <div className="ContactUsFormContainer  ">
-      <div className="ContactUsFormWrapper bg-gray-300 flex flex-col justify-center items-center self-center w-[40%] m-auto  py-5 px-8 rounded-md shadow-lg  ">
+      <div className="ContactUsFormWrapper bg-gray-300 flex flex-col justify-center items-center self-center  w-[90%] xsm:w-[80%]  sm:w-[66%] md:w-[55%] lg:w-[40%] m-auto  py-5 px-8 rounded-md shadow-lg  ">
         {/* email input  */}
         <input
           type="email"
@@ -27,7 +27,7 @@ const ContactUsForm = () => {
 
         {/* submit button starts  */}
         <div className="submitBtn mt-4 ">
-          <button className=" py-2 px-4 bg-green-600 hover:bg-green-700 active:scale-95 hover:shadow-2xl text-gray-50 font-medium rounded-md  ">
+          <button className="   py-1.5 xsm:py-2 px-3.5 xsm:px-4 text-sm xsm:text-base bg-green-600 hover:bg-green-700 active:scale-95 hover:shadow-2xl text-gray-50 font-medium rounded-md  ">
             Submit
           </button>
         </div>

@@ -12,10 +12,7 @@ const navLink = [
     item: "Home",
     link: "/",
   },
-  {
-    item: "About",
-    link: "/",
-  },
+
   {
     item: "Contact",
     link: "/contact",
@@ -35,6 +32,7 @@ const NavBar = () => {
   const [toggleAvatar, setToggleAvatar] = useState(false);
   const [toggle, setToggle] = useState(false);
   const [navToggle, setNavToggle] = useState(false);
+  const [photourl, setPhotoUrl] = useState(user?.photoURL);
 
   // console.log(user);
 
@@ -55,6 +53,11 @@ const NavBar = () => {
     logoutFunction();
     logoutSuccessFully();
   };
+
+  // use effect to handle user photourl
+  useEffect(() => {
+    setPhotoUrl(user?.photoURL);
+  }, [user, user?.photoURL]);
 
   return (
     <div
@@ -79,7 +82,7 @@ const NavBar = () => {
                 <p
                   className={`   text-gray-900 dark:text-white text-sm xsm:text-base lg:text-xl  CormorantFont  `}
                 >
-                  Logo name
+                  CodeCompanion
                 </p>
               </div>
             </Link>
@@ -89,7 +92,7 @@ const NavBar = () => {
 
         {/* nav right  */}
         <div className="flex items-center justify-between navRight ">
-          <div className="navLinks hidden md:flex  justify-center items-center   mr-1.5 ">
+          <div className="navLinks hidden md:flex  justify-center items-center   mr-1.5   ">
             {navLink.map((ele, ind) => (
               <Link
                 key={ind}
@@ -128,7 +131,7 @@ const NavBar = () => {
             ) : (
               <Link
                 to={`/login`}
-                className="hidden px-3 py-2 text-xs font-semibold text-white bg-gray-600 md:block lg:px-4 lg:text-sm"
+                className="hidden px-3 py-2 text-xs font-semibold text-white bg-gray-600 rounded  md:block hover:bg-gray-700 lg:px-4 lg:text-sm"
               >
                 Log in
               </Link>
@@ -139,13 +142,13 @@ const NavBar = () => {
             {toggleAvatar && (
               <div
                 id="dropdownAvatar"
-                className="z-10 absolute  top-[6.5rem] -right-[6rem]  md:-right-[5.6rem]  transform -translate-x-1/2 -translate-y-1/2  bg-blue-200 divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600"
+                className="z-10 absolute  top-[6.5rem] -right-[6rem]  md:-right-[5.6rem]  transform -translate-x-1/2 -translate-y-1/2  bg-blue-300 divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600"
               >
                 <div className="px-4 py-3 text-sm text-gray-900 cursor-pointer dark:text-white">
-                  <div> {user?.displayName} </div>
+                  <h1 className="font-semibold "> {user?.displayName} </h1>
                 </div>
                 <ul
-                  className="py-2 text-sm text-gray-700 dark:text-gray-200 "
+                  className="py-2 text-sm font-medium text-gray-700 dark:text-gray-200 "
                   aria-labelledby="dropdownUserAvatarButton"
                 >
                   <div className="flex flex-col avatarMenuItems ">
@@ -179,12 +182,12 @@ const NavBar = () => {
 
           {/* toggle button  */}
           <div
-            className="pl-0 mr-3 text-xl toggleMode md:pl-2 md:pr-0 sm:text-2xl "
+            className="pl-0 ml-2 mr-3 text-xl toggleMode md:pl-2 md:ml-0 md:pr-0 sm:text-2xl "
             onClick={() => handleDarkMode()}
           >
             {darkmode ? <BsFillMoonFill /> : <BsFillSunFill />}
           </div>
-          {/* toggle button  */}
+          {/* toggle button ends  */}
 
           {/*  */}
           {/* mobile view  */}
@@ -198,20 +201,15 @@ const NavBar = () => {
               {/* {!toggle ? <RiMenu3Fill /> : <RiCloseFill />} */}
               {!navToggle ? <RiMenu3Fill /> : <RiCloseFill />}
             </div>
-            {/* menu icon  */}
+            {/* menu icon ends */}
 
             {/* menu list  */}
 
             {navToggle && (
-              <div className="menuList text-center py-2 bg-[#183D3D] dark:bg-gray-300 absolute transform -translate-x-1/2 -translate-y-1/2 -right-[4.8rem] top-[6.3rem] sm:top-[6.7rem] w-[10rem] ">
+              <div className="menuList text-center py-2 bg-[#183D3D] dark:bg-gray-300 absolute transform -translate-x-1/2 -translate-y-1/2 -right-[4.8rem] top-[5.5rem] sm:top-[5.8rem] w-[10rem] ">
                 <div className="mb-4 menuItem ">
                   {navLink.map((ele, ind) => (
-                    <div
-                      key={ind}
-                      className={` text-base ${
-                        ind === navLink.length - 1 ? "pb-0" : "pb-3"
-                      }  `}
-                    >
+                    <div key={ind} className={` text-base pb-3   `}>
                       <a
                         href={ele.link}
                         className="cursor-pointer text-gray-50 dark:text-gray-900"
@@ -222,6 +220,20 @@ const NavBar = () => {
                       </a>
                     </div>
                   ))}
+
+                  <Link
+                    to={`/login`}
+                    className="cursor-pointer  text-gray-50 dark:text-gray-900"
+                    onClick={() => handleToggle()}
+                  >
+                    Log in
+                  </Link>
+                  {/* <Link
+                    to={`/login`}
+                    className="px-3 py-2 text-xs font-semibold text-white bg-gray-600 rounded  hover:bg-gray-700 lg:px-4 lg:text-sm"
+                  >
+                    Log in
+                  </Link> */}
                 </div>
               </div>
             )}

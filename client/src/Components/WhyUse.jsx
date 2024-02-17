@@ -28,17 +28,17 @@ const whyUseData = [
 
 const WhyUse = () => {
   return (
-    <div className="whyChooseUsContainer mt-20 ">
+    <div className="whyChooseUsContainer   mt-7 xsm:mt-8 sm:mt-10 md:mt-12 xmd:mt-16 lg:mt-20 ">
       <div className="whyChooseWrapper">
         {/* Header section  */}
-        <h1 className=" text-3xl text-center font-bold  ">
+        <h1 className="  text-2xl md:text-3xl text-center font-bold  ">
           Why Use CodeCompanion
         </h1>
 
         {/* header section ends  */}
 
         {/* card section starts  */}
-        <div className="cardSection  mt-12 grid grid-cols-1 sm:grid-cols-2 xmd:grid-cols-3 gap-x-7 lg:gap-x-10 gap-y-8 ">
+        <div className="cardSection  mt-12 grid grid-cols-1 sm:grid-cols-2 xmd:grid-cols-3 gap-x-5 lg:gap-x-10 gap-y-8 ">
           {whyUseData &&
             whyUseData.map((data, ind) => <Card key={ind} data={data} />)}
         </div>
