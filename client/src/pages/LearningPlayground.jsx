@@ -6,6 +6,7 @@ import useAuth from "../Hooks/UseAuth";
 
 const LearningPlayground = () => {
   // states:
+  const [language, setLanguage] = useState("English");
   const [data, setData] = useState(null);
   const [userInput, setUserInput] = useState("");
   const [explanation, setExplanation] = useState(null);
@@ -60,6 +61,7 @@ const LearningPlayground = () => {
     setCurrentLine(index);
     explainCodeMutation.mutate({
       input: data.replace("\n", ""),
+      language: language.trim().toLowerCase(),
     });
   };
 
@@ -124,14 +126,32 @@ const LearningPlayground = () => {
         ) : (
           <div className="outputContainer  mt-[2.5rem] ">
             {/* user output language select input starts  */}
-            <div className="outputLanguageinput    ">
-              <p className="text-xl font-medium  ">
-                {languagePairIsLoading
-                  ? "Loading..."
-                  : languagePair?.name?.split(" To ")[1]}{" "}
-                (out)
-              </p>
+            <div className="outputLanguageInput">
+              <div className="flex justify-between w-full title-container">
+                <p className="text-xl font-medium ">
+                  {languagePairIsLoading
+                    ? "Loading..."
+                    : languagePair?.name?.split(" To ")[1]}{" "}
+                  (out)
+                </p>
+
+                <div className="language-container">
+                  <label htmlFor="language" className="font-semibold">
+                    Language:{" "}
+                  </label>
+                  <input
+                    value={language}
+                    onChange={(e) => {
+                      e.preventDefault();
+                      setLanguage(e.target.value);
+                    }}
+                    type="text"
+                    className="border-[2px] border-black px-2"
+                  />
+                </div>
+              </div>
             </div>
+
             {/* user output language select input ends  */}
 
             {/* output response container starts  */}
