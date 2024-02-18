@@ -9,8 +9,8 @@ const ContactUsForm = () => {
 
     emailjs
       .sendForm(
-        "service_xs289qc",
-        "template_jijd2bp",
+        "service_8ekuqve",
+        "template_j5l8hfu",
         form.current,
         "GRdTJiE8CHcFoD9LB"
       )
