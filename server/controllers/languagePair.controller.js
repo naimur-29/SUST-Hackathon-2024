@@ -34,21 +34,43 @@ const languagePairController = {
       return res.status(404).json({ message: "Not found!", error });
     }
   },
+  // get one language pairs by _id:
+  async getOneById(req, res) {
+    try {
+      const query = {
+        uid: req.params.uid,
+        _id: req.params._id,
+      };
+      const data = await LanguagePairModel.findOne(query);
+      if (data === null)
+        return res.status(404).json({ message: "Not found!", error });
+      return res
+        .status(200)
+        .json({ data: LanguagePairResponseSchemas.default(data) });
+    } catch (error) {
+      console.error(error);
+      return res.status(404).json({ message: "Not found!", error });
+    }
+  },
   // delete languagePair by lid(language id):
   async deleteByLid(req, res) {
     try {
       const query = {
         uid: req.params.uid,
-        lid: req.params.lid,
+        _id: req.params._id,
       };
       await LanguagePairModel.deleteOne(query);
+      await HistoryModel.deleteOne({
+        uid: req.params.uid,
+        lid: req.params._id,
+      });
       return res.status(204).json({
-        message: `Successfully deleted lid=${req.params.lid} from uid=${req.params.uid}!`,
+        message: `Successfully deleted lid=${req.params._id} from uid=${req.params.uid}!`,
       });
     } catch (error) {
       console.error(error);
       return res.status(400).json({
-        message: `Delete lid=${req.params.lid} from uid=${req.params.uid} unsuccessful!`,
+        message: `Delete lid=${req.params._id} from uid=${req.params.uid} unsuccessful!`,
         error,
       });
     }
