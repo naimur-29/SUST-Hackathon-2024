@@ -124,8 +124,8 @@ const LearningPlayground = () => {
         ) : (
           <div className="outputContainer  mt-[2.5rem] ">
             {/* user output language select input starts  */}
-            <div className="outputLanguageinput">
-              <p className="text-xl font-medium ">
+            <div className="outputLanguageinput    ">
+              <p className="text-xl font-medium  ">
                 {languagePairIsLoading
                   ? "Loading..."
                   : languagePair?.name?.split(" To ")[1]}{" "}
@@ -140,9 +140,9 @@ const LearningPlayground = () => {
             >
               {data &&
                 data?.map((code, ind) => (
-                  <pre key={ind}>
+                  <pre key={ind} className="  ">
                     <p
-                      className={`p-1 rounded codeLine hover:bg-[#fff9] ${
+                      className={`p-1 text-wrap text-sm  xsm:text-base rounded codeLine hover:bg-[#fff9] ${
                         currentLine !== null && currentLine === ind
                           ? "bg-[#fff9]"
                           : ""

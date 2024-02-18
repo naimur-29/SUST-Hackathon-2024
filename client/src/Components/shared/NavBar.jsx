@@ -214,7 +214,7 @@ const NavBar = () => {
               >
                 <div className="mb-4 menuItem ">
                   {navLink.map((ele, ind) => (
-                    <div key={ind} className={` text-base pb-3   `}>
+                    <div key={ind} className={` text-base pb-3    `}>
                       <a
                         href={ele.link}
                         className="cursor-pointer text-gray-50 dark:text-gray-900"
