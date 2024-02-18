@@ -7,7 +7,6 @@ const LearningPlaygroundHistory = () => {
   // states:
   const [data, setData] = useState(null);
   const [userInput, setUserInput] = useState("");
-  const [explanation, setExplanation] = useState(null);
   const [currentLine, setCurrentLine] = useState(null);
 
   // hooks:
@@ -35,7 +34,6 @@ const LearningPlaygroundHistory = () => {
     setUserInput(e.target.value);
     setData(null);
     setCurrentLine(null);
-    setExplanation(null);
   };
 
   const handleGenerate = () => {
@@ -47,7 +45,6 @@ const LearningPlaygroundHistory = () => {
 
   // for getting explanation  , after  code click
   const handleCodeLineExplanation = (data, index) => {
-    setExplanation("Loading...");
     setCurrentLine(index);
     explainCodeMutation.mutate({
       input: data.replace("\n", ""),
@@ -71,7 +68,6 @@ const LearningPlaygroundHistory = () => {
     }
     if (explainCodeMutation.isSuccess) {
       window.scrollTo(0, 999999);
-      setExplanation(explainCodeMutation.data.data.data);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [_id, convertCodeMutation.isLoading, explainCodeMutation.isLoading]);
@@ -124,7 +120,6 @@ const LearningPlaygroundHistory = () => {
               <p className="text-xl font-medium ">Java (out)</p>
             </div>
             {/* user output language select input ends  */}
-
             {/* output response container starts  */}
             <div
               className={`cursor-pointer outputContainer mt-[1rem] flex flex-col gap-y-0 p-3 bg-gray-200 min-h-[100px]`}
@@ -145,43 +140,6 @@ const LearningPlaygroundHistory = () => {
                   </pre>
                 ))}
             </div>
-
-            {/* BOTTOM SECTION STARTS  */}
-            {/* if there is no response data , then bottom section will hidden  */}
-            {data ? (
-              <div className="bottomSection ">
-                {/* explain container starts  */}
-
-                {!explanation ? (
-                  <></>
-                ) : (
-                  <div className="explainSection  mt-[2.5rem]  ">
-                    {/* explanation title starts  */}
-                    <h1 className="mb-3 text-xl font-semibold ">
-                      Explanation:
-                    </h1>
-
-                    {/* explanation title ends */}
-
-                    <p className="p-3 text-lg bg-gray-200 rounded ">
-                      {explanation}
-                    </p>
-                  </div>
-                )}
-                {/* explain container ends  */}
-
-                {/* more example button starts  */}
-                {/* <div className="moreExample mt-[1rem]  text-end ">
-                  <button className="px-4 py-2 bg-green-600 rounded text-gray-50 hover:bg-green-700 hover:scale-105 active:scale-100 hover:shadow-md">
-                    More Example{" "}
-                  </button>
-                </div> */}
-                {/* more example button ends */}
-              </div>
-            ) : (
-              " "
-            )}
-
             {/* BOTTOM SECTION ends  */}
           </div>
         )}
