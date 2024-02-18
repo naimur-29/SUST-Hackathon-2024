@@ -206,7 +206,12 @@ const NavBar = () => {
             {/* menu list  */}
 
             {navToggle && (
-              <div className="menuList text-center py-2 bg-[#183D3D] dark:bg-gray-300 absolute transform -translate-x-1/2 -translate-y-1/2 -right-[4.8rem] top-[5.5rem] sm:top-[5.8rem] w-[10rem] ">
+              // <div className="menuList text-center py-2 bg-[#183D3D] dark:bg-gray-300 absolute transform -translate-x-1/2 -translate-y-1/2 -right-[4.8rem] top-[5.5rem] sm:top-[5.8rem] w-[10rem] ">
+              <div
+                className={` menuList text-center py-2 bg-[#183D3D] dark:bg-gray-300 absolute transform -translate-x-1/2 -translate-y-1/2 -right-[4.8rem]   ${
+                  user ? "top-[5.3rem]" : "top-[5.8rem]"
+                } w-[10rem]  `}
+              >
                 <div className="mb-4 menuItem ">
                   {navLink.map((ele, ind) => (
                     <div key={ind} className={` text-base pb-3   `}>
@@ -221,19 +226,15 @@ const NavBar = () => {
                     </div>
                   ))}
 
-                  <Link
-                    to={`/login`}
-                    className="cursor-pointer  text-gray-50 dark:text-gray-900"
-                    onClick={() => handleToggle()}
-                  >
-                    Log in
-                  </Link>
-                  {/* <Link
-                    to={`/login`}
-                    className="px-3 py-2 text-xs font-semibold text-white bg-gray-600 rounded  hover:bg-gray-700 lg:px-4 lg:text-sm"
-                  >
-                    Log in
-                  </Link> */}
+                  {!user && (
+                    <Link
+                      to={`/login`}
+                      className="cursor-pointer  text-gray-50 dark:text-gray-900"
+                      onClick={() => handleToggle()}
+                    >
+                      Log in
+                    </Link>
+                  )}
                 </div>
               </div>
             )}
