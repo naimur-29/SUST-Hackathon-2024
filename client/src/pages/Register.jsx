@@ -1,6 +1,6 @@
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
-import { ToastContainer } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { registerSuccessfully } from "../Utils/Toasts";
 import { motion } from "framer-motion";
@@ -8,8 +8,10 @@ import UseAuth from "../Hooks/UseAuth";
 import { updateProfile } from "firebase/auth";
 import axios from "axios";
 import UseAxiosPublic from "../Hooks/UseAxiosPublic";
+import { useMutation } from "react-query";
 
 const Register = () => {
+  // hooks:
   const axiosPublicUrl = UseAxiosPublic();
 
   const { user, logoutFunction, registerFunction } = UseAuth();
@@ -23,6 +25,11 @@ const Register = () => {
     formState: { errors, isSubmitting },
     reset,
   } = useForm();
+
+  // queries:
+  const addUserMutation = useMutation((userInfo) =>
+    axios.post("http://localhost:8000/api/user", userInfo)
+  );
 
   // registration function
   const handleRegister = async (data) => {
@@ -39,19 +46,38 @@ const Register = () => {
       formData
     );
 
-    const registerResponse = await registerFunction(userEmail, userPassword);
-    // console.log(registerResponse?.user);
-    if (registerResponse?.user) {
-      updateProfile(registerResponse?.user, {
-        displayName: userName,
-        photoURL: imageResponse?.data?.data?.display_url,
-      }).then((response) => {
-        registerSuccessfully();
-        setTimeout(() => {
-          navigate("/login");
-        }, 1200);
+    try {
+      const registerResponse = await registerFunction(userEmail, userPassword);
+      if (registerResponse?.user) {
+        // create user:
+        console.log(registerResponse?.user?.uid);
+        addUserMutation.mutate({
+          uid: registerResponse?.user?.uid,
+          name: registerResponse?.user?.email.split("@")[0],
+        });
 
-        logoutFunction();
+        updateProfile(registerResponse?.user, {
+          displayName: userName,
+          photoURL: imageResponse?.data?.data?.display_url,
+        }).then((response) => {
+          registerSuccessfully();
+          setTimeout(() => {
+            navigate("/dashboard/profile");
+          }, 1200);
+        });
+      }
+    } catch (error) {
+      // console.log(error);
+
+      toast.error(`${error?.code}`, {
+        position: "top-center",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
       });
     }
 
@@ -62,16 +88,16 @@ const Register = () => {
     <div className="registerContainer">
       <div className="registerWraper py-8 bg-[url('https://i.ibb.co/6bsNLj8/hosting-login.jpg')] bgImage flex justify-center items-center ">
         {/* registration card  */}
-        <div className="registerCard  bg-white  shadow-2xl  py-9 px-4 w-[92%] xsm:w-[86%] sm:w-[78%] md:w-[72%] xmd:w-[65%] lg:w-[55%] rounded-md border border-gray-200  ">
-          <h1 className=" text-3xl font-medium text-center mb-11 ">
+        <div className="registerCard  bg-white  shadow-2xl  py-9 px-4 w-[94%] xsm:w-[88%] sm:w-[81%] md:w-[76%] xmd:w-[68%] lg:w-[56%] rounded-md border border-gray-200  ">
+          <h1 className="mb-4 text-xl font-bold text-center  xsm:text-2xl md:text-3xl sm:mb-6 md:mb-8 lg:mb-10">
             Register{" "}
           </h1>
           <form
             onSubmit={handleSubmit(handleRegister)}
-            className=" w-[93%] xsm:w-[90%] sm:w-[88%] md:w-[84%] m-auto flex flex-col gap-6  "
+            className=" w-[98%] xsm:w-[96%] sm:w-[93%] md:w-[88%] m-auto flex flex-col gap-3 xsm:gap-5 sm:gap-6   "
           >
             {/* user name input  */}
-            <div className="userInput flex flex-col gap-1 ">
+            <div className="flex flex-col gap-1 userInput ">
               <label className="" htmlFor="name">
                 User name
               </label>
@@ -87,34 +113,34 @@ const Register = () => {
 
               {errors?.userName && (
                 <p className=" pt-1.5 text-red-600 font-semibold ">
-                  {errors.userName.message}
+                  {errors?.userName?.message}
                 </p>
               )}
             </div>
             {/* user name input ends  */}
 
             {/* user image field  */}
-            <div className="userImage flex flex-col gap-1  ">
+            <div className="flex flex-col gap-1 userImage ">
               <label htmlFor="file_input">User image</label>
               <input
                 {...register("file_input", {
                   required: "user image is required",
                 })}
-                className="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50  "
+                className="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 "
                 id="file_input"
                 type="file"
               />
 
               {errors?.file_input && (
                 <p className=" pt-1.5 text-red-600 font-semibold ">
-                  {errors.file_input.message}
+                  {errors?.file_input?.message}
                 </p>
               )}
             </div>
             {/* user image field  */}
 
             {/* email input  */}
-            <div className="emailInput flex flex-col gap-1 ">
+            <div className="flex flex-col gap-1 emailInput ">
               <label htmlFor="email">User Email</label>
               <input
                 type="email"
@@ -128,14 +154,14 @@ const Register = () => {
 
               {errors?.email && (
                 <p className=" pt-1.5 text-red-600 font-semibold ">
-                  {errors.email.message}
+                  {errors?.email?.message}
                 </p>
               )}
             </div>
             {/* email input  */}
 
             {/* password input  */}
-            <div className="passwordInput flex flex-col gap-1 ">
+            <div className="flex flex-col gap-1 passwordInput ">
               <label htmlFor="password">Password</label>
               <input
                 type="password"
@@ -159,7 +185,7 @@ const Register = () => {
             {/* password input  */}
 
             {/* confirm password input  */}
-            <div className="confirmPassword flex flex-col gap-1">
+            <div className="flex flex-col gap-1 confirmPassword">
               <label htmlFor="confirmPassword">Confirm password</label>
               <input
                 type="password"
@@ -174,7 +200,7 @@ const Register = () => {
               />
               {errors?.confirmPassword && (
                 <p className=" pt-1.5 text-red-600 font-semibold ">
-                  {errors.confirmPassword.message}
+                  {errors?.confirmPassword?.message}
                 </p>
               )}
             </div>
@@ -182,7 +208,7 @@ const Register = () => {
 
             <button
               disabled={isSubmitting}
-              className=" w-full  py-2 rounded  bg-sky-500 hover:bg-sky-600 navLinkFont text-gray-50 font-medium  text-lg  flex justify-center items-center "
+              className="flex items-center justify-center w-full py-2 text-lg font-medium rounded bg-sky-500 hover:bg-sky-600 navLinkFont text-gray-50"
             >
               {isSubmitting ? (
                 <div role="status  ">
@@ -209,10 +235,10 @@ const Register = () => {
               )}
             </button>
           </form>
-          <div className="registerDivert  mt-5 text-lg text-center  ">
+          <div className="mt-3 text-sm text-center registerDivert sm:mt-4 lg:mt-5 xsm:text-base md:text-lg ">
             <p>
               Already have an account ?{" "}
-              <span className=" text-blue-500 logoFont ">
+              <span className="text-blue-500 logoFont">
                 {" "}
                 <Link to={"/login"}>Login</Link>{" "}
               </span>

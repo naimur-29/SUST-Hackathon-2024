@@ -5,7 +5,9 @@ const cors = require("cors");
 // local imports:
 const { connectDb } = require("./services/db");
 // routers:
-const todoRouter = require("./routers/todo.routes");
+const userRouter = require("./routers/user.routes");
+const languagePairRouter = require("./routers/languagePair.routes");
+const historyRouter = require("./routers/history.routes");
 
 const app = express();
 const PORT = process.env.PORT || 8000;
@@ -24,7 +26,9 @@ const corsOptions = {
 app.use(cors(corsOptions));
 
 // add routers:
-app.use("/api/todo", todoRouter);
+app.use("/api/user", userRouter);
+app.use("/api/pair", languagePairRouter);
+app.use("/api/history", historyRouter);
 
 // start server:
 app.listen(PORT, () => {
