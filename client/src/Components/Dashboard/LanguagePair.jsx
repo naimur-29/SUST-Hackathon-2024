@@ -83,9 +83,9 @@ const LanguagePair = () => {
           {/* select language modal starts  */}
 
           <div
-            className={` z-[10] top-[3.5rem] left-[8.5rem] ${
+            className={` selectModal z-[10] top-[12rem] xmd:top-[9rem] left-[50%] -translate-x-1/2 -translate-y-1/2 ${
               pairModal ? "absolute" : "hidden"
-            }    selectModal  bg-sky-300 p-2 w-[32rem] rounded  `}
+            }    selectModal  bg-sky-300 p-2 w-[19.5rem] xsm:w-[22rem] xmd:w-[30rem] lg:w-[32rem] rounded  `}
           >
             {/* cross button starts  */}
             <div className="flex justify-end mb-2 crossBtn">
@@ -98,9 +98,9 @@ const LanguagePair = () => {
 
             {/* input section starts  */}
 
-            <div className="flex items-center self-center justify-between gap-2 inputSection ">
+            <div className="flex flex-col  xmd:flex-row items-center self-center justify-between gap-2 inputSection x  ">
               {/* left input starts  */}
-              <div className="leftInput  w-[50%] ">
+              <div className="leftInput  w-[95%] xsm:w-[90%] xmd:w-[50%] ">
                 <label
                   htmlFor="fromLanguage"
                   className="block mb-1 text-base font-medium text-gray-900 "
@@ -126,7 +126,7 @@ const LanguagePair = () => {
 
               {/* right input starts  */}
 
-              <div className="rightInput  w-[50%]">
+              <div className="rightInput w-[95%]  xsm:w-[90%] xmd:w-[50%]">
                 <label
                   htmlFor="toLanguage"
                   className="block mb-1 text-base font-medium text-gray-900 "
