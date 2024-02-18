@@ -39,13 +39,13 @@ async function explainCode(input, languagePairs, language = "english") {
       {
         role: "system",
         content:
-          "task: explain very shortly what this line of code does in " +
+          "task: explain shortly what this line of code does in " +
           language +
           "\n```" +
           `${languagePairs.to.toLowerCase()}` +
           input +
           "\n```\n" +
-          "output: limit the response, maximum 1000 characters",
+          "output: limit the response, maximum 2000 characters",
       },
     ],
     model: "gpt-4",

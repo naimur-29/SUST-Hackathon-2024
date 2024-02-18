@@ -116,7 +116,7 @@ const LanguagePair = () => {
                   {languages
                     .filter((ele) => ele.toLowerCase() !== to)
                     .map((ele) => (
-                      <option value={ele.toLowerCase()} key={ele}>
+                      <option value={ele} key={ele}>
                         {ele}
                       </option>
                     ))}
@@ -142,7 +142,7 @@ const LanguagePair = () => {
                   {languages
                     .filter((ele) => ele.toLowerCase() !== from)
                     .map((ele) => (
-                      <option value={ele.toLowerCase()} key={ele}>
+                      <option value={ele} key={ele}>
                         {ele}
                       </option>
                     ))}
@@ -174,9 +174,9 @@ const LanguagePair = () => {
         <div className="px-3 mt-6 pairData ">
           <ul className="list-decimal list-inside cursor-pointer ">
             {languagePairsIsLoading ? (
-              <h3>No pairs created yet!</h3>
-            ) : !languagePairs?.length ? (
               <h3>Loading...</h3>
+            ) : !languagePairs?.length ? (
+              <h3>No pairs created yet!</h3>
             ) : (
               languagePairs?.map((pair, ind) => (
                 <ListPair

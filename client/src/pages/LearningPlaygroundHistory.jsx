@@ -1,10 +1,9 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { useQuery, useMutation } from "react-query";
+import { useMutation } from "react-query";
 import { useParams } from "react-router-dom";
-import useAuth from "../Hooks/UseAuth";
 
-const LearningPlayground = () => {
+const LearningPlaygroundHistory = () => {
   // states:
   const [data, setData] = useState(null);
   const [userInput, setUserInput] = useState("");
@@ -13,26 +12,18 @@ const LearningPlayground = () => {
 
   // hooks:
   const { _id } = useParams();
-  const { user } = useAuth();
 
   // api queries:
-  const { data: languagePair, isLoading: languagePairIsLoading } = useQuery(
-    ["fetchLanguagePair", user?.uid],
-    async () => {
-      const res = await axios.get(
-        `http://localhost:8000/api/pair/${user?.uid}/${_id}`
-      );
-      return res.data.data;
-    }
-  );
-
   const convertCodeMutation = useMutation((data) =>
-    axios.post(`http://localhost:8000/api/pair/${user?.uid}/${_id}`, data)
+    axios.post(
+      "http://localhost:8000/api/pair/oiwrksdfal;skjf304598asfda/PythonToJava",
+      data
+    )
   );
 
   const explainCodeMutation = useMutation((data) =>
     axios.post(
-      `http://localhost:8000/api/pair/${user?.uid}/${_id}/explain`,
+      "http://localhost:8000/api/pair/oiwrksdfal;skjf304598asfda/PythonToJava/explain",
       data
     )
   );
@@ -65,6 +56,16 @@ const LearningPlayground = () => {
 
   // useEffects:
   useEffect(() => {
+    if (_id) {
+      axios
+        .get(`http://localhost:8000/api/history/${_id}`)
+        .then((res) => {
+          setUserInput(res?.data?.data?.input);
+          setData(res?.data?.data?.output);
+        })
+        .catch((err) => console.error(err));
+    }
+
     if (convertCodeMutation.isSuccess) {
       setData(convertCodeMutation.data.data.data);
     }
@@ -82,12 +83,7 @@ const LearningPlayground = () => {
         <div className="inputContainer ">
           {/* input container top input  */}
           <div className="userSelectInputSection ">
-            <p className="text-xl font-medium ">
-              {languagePairIsLoading
-                ? "Loading..."
-                : languagePair?.name?.split(" To ")[0]}{" "}
-              (in)
-            </p>
+            <p className="text-xl font-medium ">Python (in)</p>
           </div>
           {/* input container top input  */}
 
@@ -125,12 +121,7 @@ const LearningPlayground = () => {
           <div className="outputContainer  mt-[2.5rem] ">
             {/* user output language select input starts  */}
             <div className="outputLanguageinput">
-              <p className="text-xl font-medium ">
-                {languagePairIsLoading
-                  ? "Loading..."
-                  : languagePair?.name?.split(" To ")[1]}{" "}
-                (out)
-              </p>
+              <p className="text-xl font-medium ">Java (out)</p>
             </div>
             {/* user output language select input ends  */}
 
@@ -200,4 +191,4 @@ const LearningPlayground = () => {
   );
 };
 
-export default LearningPlayground;
+export default LearningPlaygroundHistory;

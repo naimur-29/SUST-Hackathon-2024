@@ -10,6 +10,7 @@ import Dashboard from "../pages/Dashboard/Dashboard";
 import Profile from "../pages/Dashboard/Profile";
 import LearningGrounds from "../pages/Dashboard/LearningGrounds";
 import LearningPlayground from "../pages/LearningPlayground";
+import LearningPlaygroundHistory from "../pages/LearningPlaygroundHistory";
 import ContactUs from "../pages/ContactUs";
 import History from "../pages/Dashboard/History";
 
@@ -57,16 +58,16 @@ export const PageRouter = createBrowserRouter([
         element: <LearningGrounds />,
       },
       {
-        path: "/dashboard/playground",
-        element: <LearningPlayground />,
-      },
-      {
         path: "/dashboard/playground/:_id",
         element: <LearningPlayground />,
       },
       {
+        path: "/dashboard/playground/history/:_id",
+        element: <LearningPlaygroundHistory />,
+      },
+      {
         // path: "/dashboard/learningHistory",
-        path: "/dashboard/learningHistory/:lid",
+        path: "/dashboard/learningHistory/:_id",
         element: <History />,
       },
     ],
