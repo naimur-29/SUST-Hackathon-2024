@@ -160,9 +160,9 @@ const LearningPlayground = () => {
             >
               {data &&
                 data?.map((code, ind) => (
-                  <pre key={ind}>
+                  <pre key={ind} className="  ">
                     <p
-                      className={`p-1 rounded codeLine hover:bg-[#fff9] ${
+                      className={`p-1 text-wrap text-sm  xsm:text-base rounded codeLine hover:bg-[#fff9] ${
                         currentLine !== null && currentLine === ind
                           ? "bg-[#fff9]"
                           : ""
