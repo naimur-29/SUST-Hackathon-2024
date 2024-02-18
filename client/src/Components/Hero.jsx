@@ -18,11 +18,14 @@ const Hero = () => {
         {/* hero title starts  */}
 
         {/* project image starts  */}
-        <div className="projectImage bg-green-300 mt-3  xsm:mt-5 sm:mt-7 md:mt-9 xmd:mt-12 flex flex-col justify-center items-center   ">
-          <h1>project image </h1>
-          <h1>project image </h1>
-          <h1>project image </h1>
-          <h1>project image </h1>
+        <div className="projectImage  mt-3  xsm:mt-5 sm:mt-7 md:mt-9 xmd:mt-12 flex flex-col justify-center items-center   ">
+          <div className="heroImage  w-[90%] m-auto ">
+            <img
+              src="https://i.ibb.co/17Td1xt/418066307-1162015165162835-8964529664184226407-n.png"
+              alt=""
+              className=" bgImage "
+            />
+          </div>
         </div>
         {/* project image ends  */}
 
