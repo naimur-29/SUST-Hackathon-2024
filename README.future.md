@@ -1,41 +1,40 @@
-# ITVerse-Hackathon-BlockBuster
+# SUST Hackathon: Code Companion
 
 ![image](https://github.com/Tanvir-A-Khan/ITVerse-Hackathon-BlockBuster/assets/98779204/a86a1b52-12b4-489e-bed4-2b073a31a063)
 
-**ArtBlock: The Evolution of Decentralized Art Communities**
+**AI-Powered Programming Language Learning Assistant (Code Companion)**
 
-**ArtBlock** is a decentralized platform for creator communities, using DAOs and NFTs. Users create communities with a native token, publish items for approval, and decide on minting via community voting. Exclusive items feature Dutch auctions, while general items have set prices. NFT ownership can change hands with a resale market and dynamic royalties, and exclusive items are non-transferable.
+**Problem We're Solving:**
+The Shatab team aims to tackle the steep learning curve associated with mastering programming languages, particularly for individuals who already possess proficiency in one or more languages. Our core concept revolves around simplifying the process of comparing and selecting new languages when you already have a foundation in one. While existing online code converters merely translate code, they fall short in facilitating genuine learning experiences.
+
+**Code Companion: An Analogical Learning Approach!**
 
 ## Badges
 
-![Solidity](https://img.shields.io/badge/Solidity-%23363636.svg?style=for-the-badge&logo=solidity&logoColor=white)
-![Ethereum](https://img.shields.io/badge/Ethereum-3C3C3D?style=for-the-badge&logo=Ethereum&logoColor=white)
 ![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
 ![TailwindCSS](https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white)
 ![NPM](https://img.shields.io/badge/NPM-%23CB3837.svg?style=for-the-badge&logo=npm&logoColor=white)
 ![VSCode](https://img.shields.io/badge/VSCode-0078D4?style=for-the-badge&logo=visual%20studio%20code&logoColor=white)
-![Remix](https://img.shields.io/badge/remix-000000?style=for-the-badge&logo=remix&logoColor=white)
 ![git](https://img.shields.io/badge/GIT-E44C30?style=for-the-badge&logo=git&logoColor=white)
+![express](https://img.shields.io/badge/Express-9FE?style=for-the-badge&logo=express&logoColor=white)
+![mongodb](https://img.shields.io/badge/MongoDB-0F0?style=for-the-badge&logo=mongodb&logoColor=white)
 
 ## Acknowledgements
 
-- [Solidity](https://www.youtube.com/watch?v=xv9OmztShIw&list=PLO5VPQH6OWdVQwpQfw9rZ67O6Pjfo6q-p)
-
-- [Metamask](https://metamask.io/)
+- [OpenAI API](https://openai.com/blog/openai-api/)
 
 ## Installation
 
 Installation and running of this project to the local machine may vary the dependencies. You may follow the Installation process :
 
-1. Copy the URL for the repository. To clone the repository using HTTPS, under "HTTPS", click. To clone the repository using an SSH key, including a certificate issued by your organization's SSH certificate authority, click SSH, then click.To clone a repository using GitHub CLI, click GitHub CLI, then click .
+1. Copy the URL for the repository. To clone the repository using HTTPS, under "HTTPS", click. To clone the repository using an SSH key, including a certificate issued by your organization's SSH certificate authority, click SSH, then click.To clone a repository using GitHub CLI, click GitHub CLI, then click.
 
 2. Open Git Bash.
 3. Change the current working directory to the location where you want the cloned directory.
 4. Clone the repository to your local machine using the following command:
 
 ```bash
-  git clone https://github.com/Tanvir-A-Khan/ITVerse-Hackathon-BlockBuster.git
-
+  git clone https://github.com/naimur-29/SUST-Hackathon-2024
 ```
 
 5. Press Enter to create your local clone.
@@ -44,14 +43,12 @@ Installation and running of this project to the local machine may vary the depen
 
 ```bash
   cd client
-
 ```
 
 7. Install dependencies
 
 ```bash
   npm install
-
 ```
 
 ## Run Locally
@@ -60,40 +57,59 @@ move to client
 
 ```bash
   cd client
-
 ```
 
 Checkout the Main Branch
 
 ```bash
   git checkout Main
-
 ```
 
 Start the Server
 
 ```bash
-  npm start
-
+  npm run dev
 ```
 
-This will start the development server and it will be accessible at http://localhost:port.
+This will start the development server and it will be accessible at http://localhost:8000.
 Port may vary from machine to machine.
 
 ## Environment Variables
 
 To run this project, you will need to add the following environment variables to your .env file
 
-`PRIVATE_KEY`
+`MONGODB_URI`
 
-The `PRIVATE_KEY` comes from the MetaMask wallet in this project.
+The `MONGODB_URI` represent the mongodb server uri.
 
-## Deployment
+`DB_NAME`
 
-To deploy this project run
+The `DB_NAME` represent the db name (you can choose any name).
+
+`OPEN_AI_API_KEY`
+
+The `OPEN_AI_API_KEY`, you must provide a OpenAi API key that supports GPT-4.
+
+## To run the server
+
+1. move to server
 
 ```bash
-  npm run deploy
+  cd server
+```
+
+2. install all dependencies
+
+```bash
+  npm install
+```
+
+3. set the environment variables in a .env file under the server/src/
+
+4. finally run the server
+
+```bash
+  npm run live
 ```
 
 ## Screenshots
