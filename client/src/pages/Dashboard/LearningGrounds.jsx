@@ -2,8 +2,8 @@ import LanguagePair from "../../Components/Dashboard/LanguagePair";
 
 const LearningGrounds = () => {
   return (
-    <div className="learningGroundsContainer h-screen    ">
-      <div className="learningGroundsWrapper   h-full w-full  ">
+    <div className="h-screen learningGroundsContainer ">
+      <div className="w-full h-full learningGroundsWrapper ">
         <LanguagePair />
       </div>
     </div>
